@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_producto: 1
+  id_trabajador: 1
+  fecha_venta: 2018-11-25 19:31:53
+
+two:
+  id_producto: 1
+  id_trabajador: 1
+  fecha_venta: 2018-11-25 19:31:53

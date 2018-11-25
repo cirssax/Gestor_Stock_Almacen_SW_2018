@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_rol: 1
+  estado: 1
+  nombre_trabajador: MyString
+  apellidos_trabajador: MyString
+  rut: 1
+  dv: MyString
+  fono: 1
+  domicilio: MyString
+
+two:
+  id_rol: 1
+  estado: 1
+  nombre_trabajador: MyString
+  apellidos_trabajador: MyString
+  rut: 1
+  dv: MyString
+  fono: 1
+  domicilio: MyString
