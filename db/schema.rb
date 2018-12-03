@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_25_224912) do
+ActiveRecord::Schema.define(version: 2018_12_02_234454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 2018_11_25_224912) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string "descrip_estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "types", force: :cascade do |t|
     t.string "descrip_tipo"
     t.datetime "created_at", null: false
@@ -46,7 +52,6 @@ ActiveRecord::Schema.define(version: 2018_11_25_224912) do
 
   create_table "workers", force: :cascade do |t|
     t.integer "id_rol"
-    t.integer "estado"
     t.string "nombre_trabajador"
     t.string "apellidos_trabajador"
     t.integer "rut"
@@ -55,10 +60,12 @@ ActiveRecord::Schema.define(version: 2018_11_25_224912) do
     t.string "domicilio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "id_estado"
   end
 
   add_foreign_key "products", "types", column: "id_tipo"
   add_foreign_key "sales", "products", column: "id_producto"
   add_foreign_key "sales", "workers", column: "id_trabajador"
   add_foreign_key "workers", "roles", column: "id_rol"
+  add_foreign_key "workers", "states", column: "id_estado"
 end
