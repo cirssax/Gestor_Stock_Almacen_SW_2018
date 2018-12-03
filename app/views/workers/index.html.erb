@@ -4,10 +4,11 @@
     <tr>
       <th>Nombre</th>
       <th>Apellido</th>
+      <th>Rol</th>
       <th>Estado</th>
       <th>Rut</th>
       <th>Fono</th>
-      <th>Editar</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -22,13 +23,22 @@
                 ADMINISTRADOR
             <%end%>
         </td>
+        <td>
+            <% if usuario.id_estado == 1 %>
+                ACTIVO
+            <% else%>
+                INACTIVO
+            <%end%>
+        </td>
         <td> <%=usuario.rut %>-<%= usuario.dv %> </td>
         <td> <%=usuario.fono %></td>
-        <td> <a href="#">Editar</a></td>
+        <td>
+          <%= link_to "Editar", edit_worker_path(usuario)%>
+        </td>
       </tr>
     <%end%>
   </tbody>
 </table>
 <div>
-  <a href="#">Crear Usuario</a>
+  <%= link_to "Nuevo usuario", workers_new_path %>
 </div>
