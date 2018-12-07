@@ -1,5 +1,5 @@
 class Worker < ApplicationRecord
-  has_many :roles
+  has_one :roles
 
   validates :rut, numericality: {message: "Por favor ingrese solamente numeros en este campo"} #, on: :create
   validates :rut, uniqueness: {message: "Ya existe dicho rut"}

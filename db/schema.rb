@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_234454) do
+ActiveRecord::Schema.define(version: 2018_12_07_205209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,14 @@ ActiveRecord::Schema.define(version: 2018_12_02_234454) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "workers", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.integer "id_rol"
+    t.integer "id_estado"
     t.string "nombre_trabajador"
     t.string "apellidos_trabajador"
     t.integer "rut"
@@ -60,12 +66,13 @@ ActiveRecord::Schema.define(version: 2018_12_02_234454) do
     t.string "domicilio"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "id_estado"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "products", "types", column: "id_tipo"
   add_foreign_key "sales", "products", column: "id_producto"
-  add_foreign_key "sales", "workers", column: "id_trabajador"
-  add_foreign_key "workers", "roles", column: "id_rol"
-  add_foreign_key "workers", "states", column: "id_estado"
+  add_foreign_key "sales", "users", column: "id_trabajador"
+  add_foreign_key "users", "roles", column: "id_rol"
+  add_foreign_key "users", "states", column: "id_estado"
 end
