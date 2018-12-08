@@ -1,0 +1,51 @@
+<h2>Usuario nuevo</h2>
+
+<%= form_for(@user, as: resource_name, url: registration_path(@user)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> caracteres minimo)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :'Confirme Password' %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Rut %><br />
+    <%= f.text_field :rut,class: "form-control" %>-<%=f.text_field :dv%>
+  </div>
+
+  <div class="field">
+    <%= f.label :Nombre %><br />
+    <%= f.text_field :nombre_trabajador,class: "form-control" %>  <%=f.text_field :apellidos_trabajador%>
+  </div>
+
+  <div class="field">
+    <%= f.label :Fono %><br />
+    <%= f.text_field :fono,class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Domicilio %><br />
+    <%= f.text_field :domicilio,class: "form-control" %>
+  </div>
+  <% f.hidden_field(:id_rol, :value=>"2") %>
+  <% f.hidden_field(:id_estado, :value=>"1") %>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>
