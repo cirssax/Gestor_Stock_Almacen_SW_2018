@@ -11,6 +11,13 @@ Rails.application.routes.draw do
   resources :products
   root 'products#index'
 
+  #Rutas para el crud de usuarios
+  #get 'lista_usuarios/index', to:'lista_usuarios#index'
+  #get 'lista_usuarios/new', to:'lista_usuarios#new'
+  #get 'lista_usuarios/:id/edit', to:'lista_usuarios#edit'
+
+  resources :lista_usuarios
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

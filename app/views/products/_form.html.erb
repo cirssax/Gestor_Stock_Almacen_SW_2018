@@ -1,0 +1,39 @@
+<% if @producto.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@producto.errors.count, "error") %>
+      Prohbido almacenar este usuario por:
+    </h2>
+    <ul>
+      <% @producto.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%=form_for @producto do|f| %>
+  <div>
+    <%= f.label :'Nombre producto' %><br>
+    <%= f.text_field :nombre_producto %>
+  </div>
+
+  <div>
+    <%= f.label :'Precio' %><br>
+    <%= f.text_field :precio %>
+  </div>
+  <div>
+    <%= f.label :'Stock' %><br>
+    <%= f.text_field :stock %>
+  </div>
+  <div>
+    <%= f.label :'Tipo' %><br>
+    <%= f.collection_select(:id_tipo, Type.all, :id, :descrip_tipo, :prompt => 'Select') %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>

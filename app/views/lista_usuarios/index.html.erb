@@ -1,0 +1,30 @@
+<h1>Lista Usuarios</h1>
+<%= link_to 'Volver', controller: "home", action: "index" %>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Rut</th>
+      <th>Rol</th>
+      <th>Accion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%@users.each do |user|%>
+      <tr>
+        <td><%= user.nombre_trabajador %></td>
+        <td><%= user.apellidos_trabajador %></td>
+        <td><%= user.rut %>-<%=user.dv %></td>
+        <td><%= @rol.find(user.id_rol).descrip_rol %></td>
+        <td><%= link_to 'Editar', edit_lista_usuario_path(user)%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<div>
+  <%= link_to 'Nuevo Usuario', controller: 'lista_usuarios', action: 'new' %>
+</div>
+

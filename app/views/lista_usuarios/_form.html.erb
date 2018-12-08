@@ -1,0 +1,48 @@
+<%=form_for @user do|f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %>
+        Prohbido almacenar este usuario por:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div>
+    <%= f.label :'nombre usuario' %><br>
+    <%= f.text_field :nombre_trabajador %>
+  </div>
+
+  <div>
+    <%= f.label :'apellido usuario' %><br>
+    <%= f.text_field :apellidos_trabajador %>
+  </div>
+  <div>
+    <%= f.label :'rut' %><br>
+    <%= f.text_field :rut %>-<%=f.text_field :dv %>
+  </div>
+  <div>
+    <%= f.label :'domicilio' %><br>
+    <%= f.text_field :domicilio %>
+  </div>
+  <div>
+    <%= f.label  :'Rol' %>
+    <%= f.collection_select(:id_rol, Role.all, :id, :descrip_rol, :prompt => 'Select') %>
+  </div>
+  <div>
+    <%= f.label :'Estado' %>
+    <%= f.collection_select(:id_estado, State.all, :id, :descrip_estado, :prompt => 'Select') %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+
+<% end %>
