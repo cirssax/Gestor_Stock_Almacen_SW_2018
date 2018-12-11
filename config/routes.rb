@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   #get 'lista_usuarios/:id/edit', to:'lista_usuarios#edit'
 
   resources :lista_usuarios
-
+  resource :types
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
