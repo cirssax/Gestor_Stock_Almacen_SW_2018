@@ -19,6 +19,13 @@ Rails.application.routes.draw do
 
   resources :lista_usuarios
   resource :types
+  root 'types#new'
+
+  get 'sales/index'
+  root :to =>"sales#index"
+
+  resource :sales
+  root 'sales#index'
   
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

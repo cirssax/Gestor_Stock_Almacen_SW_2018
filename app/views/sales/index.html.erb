@@ -1,0 +1,24 @@
+<h1>Lista de Ventas</h1>
+<%= link_to 'Volver', controller: "home", action: "index" %>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Fecha de venta</th>
+      <th>Accion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%@Ventas.each do |venta|%>
+      <tr>
+        <td><%= User.find(venta.trabajador).nombre_trabajador %></td>
+        <td><%= User.find(venta.trabajador).apellidos_trabajador %></td>
+        <td><%= venta.fecha %></td>
+        <td><%= link_to 'Detalle',"#"%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
