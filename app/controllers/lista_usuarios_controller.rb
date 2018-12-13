@@ -16,7 +16,7 @@ class ListaUsuariosController < ApplicationController
     #render plain: params[:user].inspect
     @user = User.new(user_path)
     if(@user.save)
-      redirect_to users_path
+      redirect_to lista_usuarios_path
     else
       render new_lista_usuario_path
     end
@@ -25,7 +25,7 @@ class ListaUsuariosController < ApplicationController
   def update
     @user = User.find(params[:id])
     if(@user.update(user_params))
-      redirect_to users_path
+      redirect_to lista_usuarios_path
     else
       render :edit
     end

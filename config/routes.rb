@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, module: "users"
   resources :users
 
+
   root 'home#index'
 
   #Ruta de los productos
