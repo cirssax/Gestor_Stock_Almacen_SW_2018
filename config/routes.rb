@@ -26,7 +26,8 @@ Rails.application.routes.draw do
 
   resource :sales
   root 'sales#index'
-  
+
+  get 'sales/:fecha_venta/', to: 'sales#show', as: 'descrip_sale'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

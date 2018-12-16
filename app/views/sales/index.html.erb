@@ -16,7 +16,7 @@
         <td><%= User.find(venta.trabajador).nombre_trabajador %></td>
         <td><%= User.find(venta.trabajador).apellidos_trabajador %></td>
         <td><%= venta.fecha %></td>
-        <td><%= link_to 'Detalle',"#"%></td>
+        <td><%= link_to 'Detalle', descrip_sale_path(venta.fecha) %></td>
       </tr>
     <% end %>
     </tbody>

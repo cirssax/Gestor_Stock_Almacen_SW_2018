@@ -1,0 +1,29 @@
+<h2>Venta realizada el: <%= @FechaVenta%></h2>
+
+<h4>Detalle de venta</h4>
+<%= link_to 'Volver', controller: "sales", action: "index" %>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%@descripcionVenta.each do |venta|%>
+      <tr>
+        <td> <%=@Productos.find(venta.id_producto).nombre_producto %> </td>
+        <td> <%=venta.cantidad  %> </td>
+        <td> $<%=@Productos.find(venta.id_producto).precio * venta.cantidad %> </td>
+        <% @CostoTotal = @CostoTotal + @Productos.find(venta.id_producto).precio * venta.cantidad %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <br>
+  <label>Costo total de la compra: $</label>
+  <%=@CostoTotal %>
+</div>
+
