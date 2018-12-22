@@ -12,6 +12,7 @@
                 <li><%= link_to "Profile", "#" %></li>
                 <li class="divider"></li>
                 <li> <%= link_to 'Salir', destroy_user_session_path,:class =>"btn btn-primary btn-sm", method: :delete %></li>
+                <li> <%= current_user.nombre_trabajador %> </li>
               </ul>
             </li>
           <% else %>

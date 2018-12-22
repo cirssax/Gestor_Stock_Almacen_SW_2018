@@ -1,4 +1,5 @@
-class ListaUsuariosController < ApplicationController
+class UsersController < ApplicationController
+
   def index
     @users = User.all
     @rol = Role.all
@@ -14,18 +15,18 @@ class ListaUsuariosController < ApplicationController
 
   def create
     #render plain: params[:user].inspect
-    @user = User.new(user_path)
-    if(@user.save)
-      redirect_to lista_usuarios_path
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to users_path
     else
-      render new_lista_usuario_path
+      render new_user_path
     end
   end
 
   def update
     @user = User.find(params[:id])
-    if(@user.update(user_params))
-      redirect_to lista_usuarios_path
+    if @user.update(user_params)
+      redirect_to users_path
     else
       render :edit
     end

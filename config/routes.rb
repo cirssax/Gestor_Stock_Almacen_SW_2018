@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, module: "users"
-  resources :users
+  devise_for :users, module: "users",:path_prefix =>'devise' #rutaspara el modulo de user devise
+  resources :users #rutas personalizadas para crear usuarios
+  post '/users/new', to: 'users#create'
+  patch '/users/:id', to: 'users#update' #update
+  put '/users/:id', to: 'users#update' #update
 
 
   root 'home#index'
@@ -17,7 +20,6 @@ Rails.application.routes.draw do
   #get 'lista_usuarios/new', to:'lista_usuarios#new'
   #get 'lista_usuarios/:id/edit', to:'lista_usuarios#edit'
 
-  resources :lista_usuarios
   resource :types
   root 'types#new'
 
