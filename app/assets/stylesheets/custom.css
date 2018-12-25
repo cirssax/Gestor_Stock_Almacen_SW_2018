@@ -1,0 +1,20 @@
+.nav-icon {
+  font-size: 20px;
+  float: left;
+  margin-right: 15px;
+  line-height: 20px;
+  width: 20px;
+  text-align: center;
+  color: white !important;
+}
+
+.responsive-img, .responsive-video {
+  max-width: 100%;
+  height: auto;
+}
+
+.rounded-box{
+  border-radius: 6px;
+  background-color: #FAFAFA;
+  padding: 5%;
+}
