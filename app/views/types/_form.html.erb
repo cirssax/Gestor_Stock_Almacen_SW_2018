@@ -1,0 +1,24 @@
+<% if @type.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@type.errors.count, "error") %>
+      Prohbido almacenar este tipo por:
+    </h2>
+    <ul>
+      <% @type.errors.full_messages.each do |msg| %>
+        <li>
+          <%= msg %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%=form_for @type do|f| %>
+  <div>
+    <%= f.label :'Nuevo Tipo' %><br>
+    <%= f.text_field :descrip_tipo %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

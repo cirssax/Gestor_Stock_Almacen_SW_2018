@@ -2,7 +2,7 @@
   <div id="error_explanation">
     <h2>
       <%= pluralize(@venta.errors.count, "error") %>
-      Prohbido almacenar este usuario por:
+      No se pudo crear esta venta debido a:
     </h2>
     <ul>
       <% @venta.errors.full_messages.each do |msg| %>
@@ -16,15 +16,12 @@
 
 <%=form_for @venta do|f| %>
   <div>
-    <label>Vendedor: </label><%= current_user.nombre_trabajador%>
+    <label>Vendedor:  <%= current_user.nombre_trabajador%></label>
   </div>
 
   <div>
-    <%= f.label :'Seleccionar producto' %>
-
-    <%= f.collection_select(:id_producto, @productos, :id, :nombre_producto, :prompt => 'Select') %>
-    <% @prod_select = @venta.id_producto %>
-    <%= f.select :cantidad, ((0..500).map {|i| [i,i] } << ["No limit",nil]) %>
+    <%= f.collection_select(:id_producto, Product.select("products.nombre_producto, products.stock, products.id").where("products.stock > ?", 0), :id, :nombre_producto, :prompt => 'Select') %>
+    <%= f.select :cantidad, ((1..500).map {|i| [i,i] } << ["No limit",nil]) %>
   </div>
   <div>
     <%= f.submit %>

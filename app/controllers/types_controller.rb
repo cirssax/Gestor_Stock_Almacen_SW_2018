@@ -1,6 +1,10 @@
 class TypesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @type = Type.all
+  end
+
   def new
     @type = Type.new
   end

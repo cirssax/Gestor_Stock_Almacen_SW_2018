@@ -1,26 +1,25 @@
 <h1>Lista de Ventas</h1>
 <%= link_to 'Volver', controller: "home", action: "index" %>
-<div>
-  <table>
-    <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Apellidos</th>
-      <th>Fecha de venta</th>
-      <th>Accion</th>
-    </tr>
-    </thead>
-    <tbody>
-    <%@Ventas.each do |venta|%>
-      <tr>
-        <td><%= User.find(venta.trabajador).nombre_trabajador %></td>
-        <td><%= User.find(venta.trabajador).apellidos_trabajador %></td>
-        <td><%= venta.fecha %></td>
-        <td><%= link_to 'Detalle', descrip_sale_path(venta.fecha) %></td>
+
+<div class="col-12 col-sm-12 col-lg-12">
+  <div class="table-responsive">
+    <table class="table table-hover table-striped shadow-2dp">
+      <tr class="info">
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Fecha de Venta</th>
+        <th>Accion</th>
       </tr>
-    <% end %>
-    </tbody>
-  </table>
+      <%@Ventas.each do |venta|%>
+        <tr>
+          <td><%= User.find(venta.trabajador).nombre_trabajador %></td>
+          <td><%= User.find(venta.trabajador).apellidos_trabajador %></td>
+          <td><%= venta.fecha %></td>
+          <td><%= link_to 'Detalle', descrip_sale_path(venta.fecha) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
 <div>
   <%= link_to 'Nueva venta' , new_sales_path%>

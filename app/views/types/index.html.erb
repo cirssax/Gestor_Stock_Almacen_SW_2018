@@ -1,0 +1,20 @@
+<h3>Listado de tipos</h3>
+<div class="col-12 col-sm-12 col-lg-12">
+  <div class="table-responsive">
+    <table class="table table-hover table-striped shadow-2dp">
+      <tr class="info">
+        <th>Tipo</th>
+        <th>Acction</th>
+      </tr>
+      <% @type.each do |tipo| %>
+        <tr>
+          <td><%= tipo.descrip_tipo %></td>
+          <td>Editar</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<div>
+  <%= link_to 'Nuevo Tipo de Producto', controller: 'types', action: 'new' %>
+</div>

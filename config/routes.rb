@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   root :to => "products#index"
 
   resources :products
-  root 'products#index'
+  root :to => 'products#index'
+
 
   #Rutas para el crud de usuarios
   #get 'lista_usuarios/index', to:'lista_usuarios#index'
@@ -21,13 +22,14 @@ Rails.application.routes.draw do
   #get 'lista_usuarios/:id/edit', to:'lista_usuarios#edit'
 
   resource :types
-  root 'types#new'
+  root :to =>'types#index'
+  get 'types/index', to: 'types#index'
 
   get 'sales/index'
   root :to =>"sales#index"
 
   resource :sales
-  root 'sales#index'
+  root :to =>'sales#index'
 
   get 'sales/:fecha_venta/', to: 'sales#show', as: 'descrip_sale'
 
