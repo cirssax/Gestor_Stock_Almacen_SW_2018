@@ -14,6 +14,10 @@
   </div>
 <% end %>
 
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+
 <%=form_for @venta do|f| %>
   <div>
     <label>Vendedor:  <%= current_user.nombre_trabajador%></label>
