@@ -1,0 +1,8 @@
+es:
+  activerecord:
+    attributes:
+      product:
+        id_tipo: 'Tipo de Producto'
+        precio: 'Costo'
+        stock: 'Stock'
+        nombre_producto: 'Nombre del Producto'

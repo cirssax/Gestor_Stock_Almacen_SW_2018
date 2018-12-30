@@ -11,17 +11,21 @@ class TypesController < ApplicationController
 
   def create
     @type = Type.new(type_params)
-
     if @type.save
-      puts "Almacenamiento correcto"
-      redirect_to products_index_path
+       flash[:succes] = "Almacenamiento correcto"
+      redirect_to types_index_path
     else
       render :new
     end
+  end
+
+  def edit
+    @type = Type.find(params[:id])
   end
 
   private
   def type_params
     params.require(:type).permit(:descrip_tipo)
   end
+
 end

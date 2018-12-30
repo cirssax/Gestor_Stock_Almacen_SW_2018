@@ -9,12 +9,14 @@
       <% @type.each do |tipo| %>
         <tr>
           <td><%= tipo.descrip_tipo %></td>
-          <td>Editar</td>
+          <td>
+            <%= link_to 'Editar', edit_types_path(tipo.id) %>
+          </td>
         </tr>
       <% end %>
     </table>
   </div>
 </div>
 <div>
-  <%= link_to 'Nuevo Tipo de Producto', controller: 'types', action: 'new' %>
+  <%= link_to 'Nuevo Tipo de Producto', new_types_path %>
 </div>

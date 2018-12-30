@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 
+gem 'devise-i18n-views'
+
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem "paperclip", "~> 5.0.0"

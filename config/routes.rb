@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resource :types
   root :to =>'types#index'
   get 'types/index', to: 'types#index'
+  get 'types/:id/edit', to: 'types#edit', as: 'edit_type'
 
   get 'sales/index'
   root :to =>"sales#index"

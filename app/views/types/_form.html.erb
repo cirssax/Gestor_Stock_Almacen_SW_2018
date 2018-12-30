@@ -13,9 +13,10 @@
     </ul>
   </div>
 <% end %>
+
 <%=form_for @type do|f| %>
   <div>
-    <%= f.label :'Nuevo Tipo' %><br>
+    <%= f.label :descrip_tipo %><br>
     <%= f.text_field :descrip_tipo %>
   </div>
   <div>
