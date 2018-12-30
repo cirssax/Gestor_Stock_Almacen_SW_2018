@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :domicilio, length: {in: 2..100, :message => "Largo inadecuado de domicilio"}
   #Validacines para el fono
   validates :fono, numericality: {message: "Por favor ingrese solamente numeros en este campo"} #, on: :create
-  validates :gono, numericality: {only_integer: true}
+  validates :fono, numericality: {only_integer: true}
   #Validaciones para el nombre
   validates :nombre_trabajador, length: { in: 2..50 , :message => "Largo inadecuado de nombre"}
   validates :nombre_trabajador,  format: { with: VALID_NAME_REGEX , :message => "Formato invalido"}

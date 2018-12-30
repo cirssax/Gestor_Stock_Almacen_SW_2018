@@ -40,11 +40,19 @@
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li><a href="/"><%= fa_icon('home', class:"nav-icon") %> Principal</a></li>
-        <li><a href="/products/index"><%= fa_icon('archive', class:"nav-icon") %> Productos</a></li>
-        <li><a href="/types/index"><%= fa_icon('folder', class:"nav-icon") %> Categorias</a></li>
-        <li><a href="/sales/index"><%= fa_icon('shopping-bag', class:"nav-icon") %> Ventas</a></li>
-        <li><a href="/users"><%= fa_icon('users', class:"nav-icon") %> Usuarios</a></li>
+        <%if current_user.id_rol == 1 %>
+          <li><a href="/"><%= fa_icon('home', class:"nav-icon") %> Principal</a></li>
+          <li><a href="/products/index"><%= fa_icon('archive', class:"nav-icon") %> Productos</a></li>
+          <li><a href="/types/index"><%= fa_icon('folder', class:"nav-icon") %> Categorias</a></li>
+          <li><a href="/sales/index"><%= fa_icon('shopping-bag', class:"nav-icon") %> Ventas</a></li>
+          <li><a href="/users"><%= fa_icon('users', class:"nav-icon") %> Usuarios</a></li>
+        <%else %>
+          <li><a href="/"><%= fa_icon('home', class:"nav-icon") %> Principal</a></li>
+          <li><a href="/products/index"><%= fa_icon('archive', class:"nav-icon") %> Productos</a></li>
+          <li><a href="/types/index"><%= fa_icon('folder', class:"nav-icon") %> Categorias</a></li>
+          <li><a href="/sales/index"><%= fa_icon('shopping-bag', class:"nav-icon") %> Ventas</a></li>
+        <%end %>
+
       </ul>
 
     </div>
