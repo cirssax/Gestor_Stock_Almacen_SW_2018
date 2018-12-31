@@ -2,29 +2,30 @@ class TypesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @type = Type.all
+    @types = Type.all
   end
 
   def new
-    @type = Type.new
+    @types = Type.new
   end
 
   def create
-    @type = Type.new(type_params)
-    if @type.save
-       flash[:succes] = "Almacenamiento correcto"
+    @types = Type.new(tipo_params)
+    if @types.save
+      flash[:succes] = "Almacenamiento correcto"
       redirect_to types_index_path
     else
-      render :new
+      render types_new_path
     end
   end
 
   def edit
-    @type = Type.find(params[:id])
+    aux = params[:id]
+    @types = Type.find(aux)
   end
 
   private
-  def type_params
+  def tipo_params
     params.require(:type).permit(:descrip_tipo)
   end
 

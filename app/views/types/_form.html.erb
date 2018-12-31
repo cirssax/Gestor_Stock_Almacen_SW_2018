@@ -1,11 +1,11 @@
-<% if @type.errors.any? %>
+<% if @types.errors.any? %>
   <div id="error_explanation">
     <h2>
-      <%= pluralize(@type.errors.count, "error") %>
+      <%= pluralize(@types.errors.count, "error") %>
       Prohbido almacenar este tipo por:
     </h2>
     <ul>
-      <% @type.errors.full_messages.each do |msg| %>
+      <% @types.errors.full_messages.each do |msg| %>
         <li>
           <%= msg %>
         </li>
@@ -14,12 +14,25 @@
   </div>
 <% end %>
 
-<%=form_for @type do|f| %>
+<%=form_for @types do|f| %>
+  <form class="form-horizontal">
+    <div class="row">
+      <div class="card-body">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <%= f.label 'Descripcion de Tipo', :class => 'form-label' %><br>
+            <%= f.text_field :descrip_tipo,class: "form-control" %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </form>
   <div>
-    <%= f.label :descrip_tipo %><br>
-    <%= f.text_field :descrip_tipo %>
+
   </div>
   <div>
-    <%= f.submit %>
+    <%= f.submit 'Enviar', :class=> 'btn btn-primary' %>
+    <%= link_to 'Volver', types_index_path, :class=> 'btn btn-danger' %>
   </div>
 <% end %>

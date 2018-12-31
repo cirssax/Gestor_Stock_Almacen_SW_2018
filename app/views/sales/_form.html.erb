@@ -14,20 +14,33 @@
   </div>
 <% end %>
 
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-
 <%=form_for @venta do|f| %>
-  <div>
-    <label>Vendedor:  <%= current_user.nombre_trabajador%></label>
-  </div>
+  <form class="form-horizontal">
+    <div class="row">
+      <div class="card-body">
+        <div class="form-group">
+          <div class="form-group col-md-12">
+            <label class="form-control">Vendedor:  <%= current_user.nombre_trabajador%></label>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.collection_select :id_producto, Product.select("products.nombre_producto, products.stock, products.id").where("products.stock > ?", 0), :id, :nombre_producto,  {:include_blank => true}, {:class => 'form-control btn btn-secondary dropdown-toggle'} %>
+          </div>
 
-  <div>
-    <%= f.collection_select(:id_producto, Product.select("products.nombre_producto, products.stock, products.id").where("products.stock > ?", 0), :id, :nombre_producto, :prompt => 'Select') %>
-    <%= f.select :cantidad, ((1..500).map {|i| [i,i] } << ["No limit",nil]) %>
-  </div>
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+          <div class="form-group col-md-6">
+            <%= f.select :cantidad, ((1..500).map {|i| [i,i] } << ["No limit",nil]),  {:include_blank => true}, {:class => 'form-control btn btn-secondary dropdown-toggle'} %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= f.submit 'Enviar', :class=> 'btn btn-primary'%>
+            <%= link_to 'Cancelar', sales_index_path ,:class=> 'btn btn-danger' %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+<%end%>
+
+
+
+
+

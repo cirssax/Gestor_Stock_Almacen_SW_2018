@@ -1,5 +1,4 @@
 <h1>Lista de Ventas</h1>
-<%= link_to 'Volver', controller: "home", action: "index" %>
 
 <div class="col-12 col-sm-12 col-lg-12">
   <div class="table-responsive">
@@ -15,12 +14,12 @@
           <td><%= User.find(venta.trabajador).nombre_trabajador %></td>
           <td><%= User.find(venta.trabajador).apellidos_trabajador %></td>
           <td><%= venta.fecha %></td>
-          <td><%= link_to 'Detalle', descrip_sale_path(venta.fecha) %></td>
+          <td><%= link_to 'Detalle', descrip_sale_path(venta.fecha), :class => 'btn btn-success btn-xs' %></td>
         </tr>
       <% end %>
     </table>
   </div>
 </div>
 <div>
-  <%= link_to 'Nueva venta' , new_sales_path%>
+  <%= link_to 'Nueva venta' , new_sales_path, :class => 'btn btn-primary'%>
 </div>

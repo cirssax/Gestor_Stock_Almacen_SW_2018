@@ -15,10 +15,10 @@ class ProductsController < ApplicationController
     @producto = Product.new(producto_params)
 
     if @producto.save
-      puts "Almacenamiento correcto"
+      flash[:succes] = "Almacenamiento correcto"
       redirect_to products_index_path
     else
-      #puts @producto.errors.full_messages.join(" ", " ")
+
       render :new
     end
   end

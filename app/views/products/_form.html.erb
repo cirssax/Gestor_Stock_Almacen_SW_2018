@@ -15,24 +15,32 @@
 <% end %>
 
 <%=form_for @producto do|f| %>
-  <div>
-    <%= f.label :'Nombre producto' %><br>
-    <%= f.text_field :nombre_producto %>
-  </div>
-
-  <div>
-    <%= f.label :'Precio' %><br>
-    <%= f.text_field :precio %>
-  </div>
-  <div>
-    <%= f.label :'Stock' %><br>
-    <%= f.text_field :stock %>
-  </div>
-  <div>
-    <%= f.label :'Tipo' %><br>
-    <%= f.collection_select(:id_tipo, Type.all, :id, :descrip_tipo, :prompt => 'Select') %>
-  </div>
-  <div>
-    <%= f.submit %>
-  </div>
+  <form class="form-horizontal">
+    <div class="card-body">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= f.label :'Nombre producto', class: 'form-label' %><br>
+          <%= f.text_field :nombre_producto,class: "form-control" %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= f.label :'Precio', class: 'form-label' %><br>
+          <%= f.text_field :precio ,class: "form-control", type: 'number'%>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= f.label :'Stock', class: 'form-label' %><br>
+          <%= f.text_field :stock,class: "form-control", type: 'number' %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= f.label :'Tipo' %><br>
+          <%= f.collection_select(:id_tipo, Type.all, :id, :descrip_tipo, {:include_blank => true}, {:class => 'form-control'}) %>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <%= f.submit 'Guardar', :class=> 'btn btn-primary' %>
+      <%= link_to 'Cancelar', products_index_path,:class=> 'btn btn-danger' %>
+    </div>
+  </form>
 <% end %>

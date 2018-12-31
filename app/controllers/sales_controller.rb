@@ -19,6 +19,9 @@ class SalesController < ApplicationController
                 date_part('hour', fecha_venta) = '"+hour+"' AND
                 date_part('minutes', fecha_venta) = '"+minutes+"' AND
                 trunc(date_part('seconds', fecha_venta)) = '"+seconds+"'"
+
+    @worker = Sale.select("id_trabajador").where(sentencia)
+
     @descripcionVenta = Sale.select("sales.id_producto, sales.cantidad").where(sentencia)
 
     @Productos = Product.select("id, precio, nombre_producto")
@@ -31,24 +34,34 @@ class SalesController < ApplicationController
 
   def create
     @venta = Sale.new(sale_params)
-      @venta.id_trabajador= current_user.id
-      @venta.fecha_venta = DateTime.now
-      stock_producto = Product.select("stock, nombre_producto, id").where("id = '"+ @venta.id_producto.to_s+"'")
-      if @venta.cantidad.to_i > stock_producto[0].stock.to_i
-        flash[:warning] = "Cantidad mayor al stock disponible"
-        flash[:notice] = "Stock disponible del producto: "+stock_producto[0].nombre_producto.to_s+": "+stock_producto[0].stock.to_s
-        redirect_to new_sales_path
+    if @venta.product == nil
+      flash[:warning] = "Seleccione un producto"
+      render new_sales_path
+    else
+      if @venta.cantidad == nil
+        flash[:warning] = "Seleccione una cantidad"
+        render new_sales_path
       else
-        if @venta.save
-          nuevo_stock = stock_producto[0].stock.to_i - @venta.cantidad.to_i
-          product = Product.find(stock_producto[0].id.to_i)
-          product.update_attribute :stock, nuevo_stock.to_s
-          flash[:succes] = "Venta realizada con exito"
-          redirect_to sales_index_path
+        @venta.id_trabajador= current_user.id
+        @venta.fecha_venta = DateTime.now
+        stock_producto = Product.select("stock, nombre_producto, id").where("id = '"+ @venta.id_producto.to_s+"'")
+        if @venta.cantidad.to_i > stock_producto[0].stock.to_i
+          flash[:warning] = "Cantidad mayor al stock disponible"
+          flash[:notice] = "Stock disponible del producto: "+stock_producto[0].nombre_producto.to_s+": "+stock_producto[0].stock.to_s
+          redirect_to new_sales_path
         else
-          render new_sales_path
+          if @venta.save
+            nuevo_stock = stock_producto[0].stock.to_i - @venta.cantidad.to_i
+            product = Product.find(stock_producto[0].id.to_i)
+            product.update_attribute :stock, nuevo_stock.to_s
+            flash[:succes] = "Venta realizada con exito"
+            redirect_to sales_index_path
+          else
+            render new_sales_path
+          end
         end
       end
+    end
   end
 
   private
