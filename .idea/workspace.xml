@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ddcdedc4-5270-44dd-a0ce-dd2524a6726d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ProyectoSW2018.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoSW2018.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/products_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/products_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/sales_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/sales_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/types_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/types_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/sessions/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/devise/shared/_links.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/devise/shared/_links.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/products/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/products/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/products/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/products/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/sales/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/sales/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/sales/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/sales/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/sales/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/sales/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/types/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/types/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/types/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/types/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/types/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/types/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/types/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/types/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/edit.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/edit.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/new.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-    </list>
+    <list default="true" id="ddcdedc4-5270-44dd-a0ce-dd2524a6726d" name="Default" comment="" />
     <ignored path="ProyectoSW2018.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -112,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/types/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="12" column="86" lean-forward="true" selection-start-line="12" selection-start-column="86" selection-end-line="12" selection-end-column="92" />
+              <caret line="12" column="86" selection-start-line="12" selection-start-column="86" selection-end-line="12" selection-end-column="92" />
             </state>
           </provider>
         </entry>
@@ -438,12 +413,12 @@
       <workItem from="1546207557046" duration="3667000" />
       <workItem from="1546213038958" duration="7348000" />
       <workItem from="1546228092813" duration="2678000" />
-      <workItem from="1546230870015" duration="4462000" />
+      <workItem from="1546230870015" duration="4617000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121913000" />
+    <option name="totallyTimeSpent" value="122068000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -751,7 +726,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/types/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="86" lean-forward="true" selection-start-line="12" selection-start-column="86" selection-end-line="12" selection-end-column="92" />
+          <caret line="12" column="86" selection-start-line="12" selection-start-column="86" selection-end-line="12" selection-end-column="92" />
         </state>
       </provider>
     </entry>
