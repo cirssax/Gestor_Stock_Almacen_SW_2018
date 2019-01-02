@@ -6,7 +6,7 @@ class SalesController < ApplicationController
   end
 
   def show
-    @FechaVenta = params[:fecha_venta]
+    @FechaVenta = params[:id]
     anio = @FechaVenta[0]+@FechaVenta[1]+@FechaVenta[2]+@FechaVenta[3]
     month = @FechaVenta[5]+@FechaVenta[6]
     day = @FechaVenta[8]+@FechaVenta[9]

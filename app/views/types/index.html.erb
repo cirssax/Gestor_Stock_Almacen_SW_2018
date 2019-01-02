@@ -10,7 +10,7 @@
         <tr>
           <td><%= tipo.descrip_tipo %></td>
           <td>
-            <%= link_to 'Editar', types_edit_path(tipo.id), :class=> 'btn btn-success btn-xs' %>
+            <%= link_to 'Editar',edit_type_path(tipo.id), :class=> 'btn btn-success btn-xs' %>
           </td>
         </tr>
       <% end %>
@@ -18,5 +18,5 @@
   </div>
 </div>
 <div>
-  <%= link_to 'Nuevo Tipo de Producto', types_new_path, :class=> 'btn btn-primary' %>
+  <%= link_to 'Nuevo Tipo de Producto', new_type_path, :class=> 'btn btn-primary' %>
 </div>
