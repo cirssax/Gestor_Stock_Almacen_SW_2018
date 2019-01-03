@@ -1,28 +1,49 @@
-<h3>Listado de productos</h3>
+<h2>Listado de productos</h2>
 
 <div class="col-12 col-sm-12 col-lg-12">
   <div class="table-responsive">
     <table class="table table-hover table-striped shadow-2dp">
-      <tr class="info">
-        <th>Nombre</th>
-        <th>Precio</th>
-        <th></th>
-      </tr>
-      <% @Productos.each do |producto|  %>
-        <tr>
-          <td><%= producto.nombre_producto %></td>
-          <td><%= producto.precio %></td>
-          <td>
-            <%= link_to 'Editar', edit_product_path(producto.id), :class => 'btn btn-success btn-xs' %>
-          </td>
+      <%if current_user.id_rol == 1 %>
+        <tr class="info">
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th></th>
         </tr>
-      <% end %>
+        <% @Productos.each do |producto|  %>
+          <tr>
+            <td><%= producto.nombre_producto %></td>
+            <td><%= producto.precio %></td>
+              <td>
+                <%= link_to 'Editar', edit_product_path(producto.id), :class => 'btn btn-success btn-xs' %>
+                <%= link_to 'Ficha', product_path(producto.id), :class => 'btn btn-info btn-xs' %>
+              </td>
+          </tr>
+        <% end %>
+      <%else %>
+        <tr class="info">
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th></th>
+        </tr>
+        <% @Productos.each do |producto|  %>
+          <tr>
+            <td><%= producto.nombre_producto %></td>
+            <td><%= producto.precio %></td>
+            <td><%= producto.stock %></td>
+            <td>
+              <%= link_to 'Ficha', product_path(producto.id), :class => 'btn btn-success btn-xs' %>
+            </td>
+          </tr>
+        <% end %>
+      <%end %>
     </table>
   </div>
 </div>
 <br>
-
-<div>
-  <%= link_to 'Nuevo Producto', new_product_path, :class => "btn btn-primary" %>
-</div>
+<%if current_user.id_rol == 1 %>
+  <div>
+    <%= link_to 'Nuevo Producto', new_product_path, :class => "btn btn-primary" %>
+  </div>
+<%end %>
 

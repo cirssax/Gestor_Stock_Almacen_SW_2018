@@ -1,5 +1,5 @@
-<h1>Editar Producto</h1>
+<h3>Editar Producto</h3>
 
-<%= link_to 'Volver', products_index_path %>
-
-<%= render 'form' %>
+<%if current_user.id_rol == 1 %>
+  <%= render 'form' %>
+<%end %>

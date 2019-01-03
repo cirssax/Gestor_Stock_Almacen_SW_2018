@@ -13,10 +13,19 @@
     </ul>
   </div>
 <% end %>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>">
+    <a href="#" data-dismiss="alert" class="close">×</a>
+    <ul>
+      <li>
+        <%= value %>
+      </li>
+    </ul>
+  </div>
+<% end %>
 
 <%=form_for @user do|f|%>
     <form class="form-horizontal">
-      <div class="row">
         <div class="card-body">
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -29,32 +38,17 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group col-md-12">
-
-              <div class="col-md-4">
-                <%= f.label :'rut'%>
-                <%= f.text_field :rut, class: "form-control", placeholder: "Rut"%>
-              </div>
-
-              <div class="col-sm-1">
-                <%= f.label :' '%>
-                <div class="input-group-addon">
-                  -
-                </div>
-              </div>
-              <div class="col-md-2">
-                <%= f.label :' '%>
-                <%=f.text_field :dv, class: "form-control", placeholder: "DV", type: "text" %>
-              </div>
-
+            <div class="form-group col-md-6">
+              <%= f.label :'rut'%>
+              <%= f.text_field :rut, class: "form-control", placeholder: "Rut"%>
+            </div>
+            <div class="form-group col-md-6">
+              <%= f.label :'fono', class: 'form-label' %><br>
+              <%= f.text_field :fono,class: "form-control"  %>
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group col-md-6">
-                <%= f.label :'fono', class: 'form-label' %><br>
-                <%= f.text_field :fono,class: "form-control"  %>
-            </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-12">
               <%= f.label :'domicilio', class: 'form-label' %><br>
               <%= f.text_field :domicilio,class: "form-control"  %>
             </div>
@@ -91,6 +85,5 @@
           <%= f.submit 'Enviar', :class=> 'btn btn-primary' %>
           <%= link_to 'Cancelar', users_path,:class=> 'btn btn-danger' %>
         </div>
-      </div>
     </form>
 <% end %>

@@ -18,28 +18,35 @@ class ProductsController < ApplicationController
       flash[:succes] = "Almacenamiento correcto"
       redirect_to products_index_path
     else
-
       render :new
     end
   end
 
   def edit
-    @producto = Product.find(params[:id])
-    @Tipos = Type.all
+    if current_user.id_rol != 1
+      flash[:warning] = "No posee los roles para esta acción"
+    else
+      @producto = Product.find(params[:id])
+      @Tipos = Type.all
+    end
   end
 
   def show
     @Tipos = Type.all
+    @producto = Product.find(params[:id])
   end
 
   def update
-
-    @producto = Product.find(params[:id])
-
-    if @producto.update(producto_params)
-      redirect_to products_index_path
+    if current_user.id_rol != 1
+      flash[:warning] = "No posee los roles para esta acción"
     else
-      render :edit
+      @producto = Product.find(params[:id])
+
+      if @producto.update(producto_params)
+        redirect_to products_index_path
+      else
+        render products_index_path
+      end
     end
   end
 

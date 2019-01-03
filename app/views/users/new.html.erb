@@ -1,1 +1,5 @@
-<%= render 'form' %>
+<h3>Nuevo Usuario</h3>
+
+<%if current_user.id_rol == 1 %>
+  <%= render 'form' %>
+<%end %>

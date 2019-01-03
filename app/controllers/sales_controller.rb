@@ -2,7 +2,12 @@ class SalesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @Ventas = Sale.select("sales.fecha_venta as fecha, sales.id_trabajador as trabajador").group("sales.fecha_venta, sales.id_trabajador")
+    if current_user.id_rol == 1
+      @Ventas = Sale.select("sales.fecha_venta as fecha, sales.id_trabajador as trabajador").group("sales.fecha_venta, sales.id_trabajador")
+
+    else
+      @Ventas = Sale.select("sales.fecha_venta as fecha, sales.id_trabajador as trabajador").where("sales.id_trabajador = '"+current_user.id.to_s+"'").group("sales.fecha_venta, sales.id_trabajador")
+    end
   end
 
   def show
@@ -34,13 +39,13 @@ class SalesController < ApplicationController
 
   def create
     @venta = Sale.new(sale_params)
-    if @venta.product == nil
+    if @venta.id_producto == nil
       flash[:warning] = "Seleccione un producto"
-      render new_sales_path
+      render new_sale_path
     else
       if @venta.cantidad == nil
         flash[:warning] = "Seleccione una cantidad"
-        render new_sales_path
+        render new_sale_path
       else
         @venta.id_trabajador= current_user.id
         @venta.fecha_venta = DateTime.now
@@ -48,16 +53,16 @@ class SalesController < ApplicationController
         if @venta.cantidad.to_i > stock_producto[0].stock.to_i
           flash[:warning] = "Cantidad mayor al stock disponible"
           flash[:notice] = "Stock disponible del producto: "+stock_producto[0].nombre_producto.to_s+": "+stock_producto[0].stock.to_s
-          redirect_to new_sales_path
+          redirect_to new_sale_path
         else
           if @venta.save
             nuevo_stock = stock_producto[0].stock.to_i - @venta.cantidad.to_i
             product = Product.find(stock_producto[0].id.to_i)
             product.update_attribute :stock, nuevo_stock.to_s
             flash[:succes] = "Venta realizada con exito"
-            redirect_to sales_index_path
+            redirect_to new_sale_path
           else
-            render new_sales_path
+            render new_sale_path
           end
         end
       end

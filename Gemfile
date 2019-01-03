@@ -30,6 +30,10 @@ gem 'devise'
 
 gem 'devise-i18n-views'
 
+gem 'rut_chileno'
+
+gem 'cancancan', '~> 2.0'
+
 #gem 'bootstrap-sass', '~> 3.3.6'
 
 gem "paperclip", "~> 5.0.0"

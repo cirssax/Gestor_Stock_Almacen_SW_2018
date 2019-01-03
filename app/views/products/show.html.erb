@@ -1,0 +1,53 @@
+<div class="panel panel-info bootcards-file">
+  <div class="panel-heading">
+    <h1 class="panel-title">Ficha del producto <%=@producto.nombre_producto %></h1>
+  </div>
+  <div class="list-group">
+
+    <div class="list-group-item" style="height: 130px; padding-left: 0px !important;">
+
+
+      <h3 class="list-group-item-text">
+        <%=@producto.nombre_producto %>
+      </h3>
+      <div class="list-group-item-text">
+        <b>Categoria: </b><%=Type.find(@producto.id_tipo).descrip_tipo %>
+      </div>
+
+    </div>
+    <div class="list-group-item">
+      <p class="list-group-item-text"><strong>Detalles</strong></p>
+    </div>
+    <div class="list-group-item">
+     <p class="list-group-item-text">
+      <ul>
+        <li>
+          <b>Stock: <%=@producto.stock %> </b>
+        </li>
+        <li>
+          <b>Precio: $<%=@producto.precio  %></b>
+        </li>
+        <li>
+          <b>Fecha de Creación: <%=@producto.created_at  %></b>
+        </li>
+        <li>
+          <b>Fecha de Última modificación: <%=@producto.updated_at  %></b>
+        </li>
+      </ul>
+      </p>
+    </div>
+  </div>
+</div>
+<br>
+
+<div>
+  <%=link_to 'Volver', products_index_path, :class => 'btn btn-primary' %>
+</div>
+
+<style>
+  .product-img{
+    width: auto;
+    height: 120px;
+  }
+
+</style>

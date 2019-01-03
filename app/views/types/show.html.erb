@@ -1,0 +1,47 @@
+<div class="panel panel-info bootcards-file">
+  <div class="panel-heading">
+    <h1 class="panel-title">Ficha de tipo: <%=@tipo.descrip_tipo %></h1>
+  </div>
+  <div class="list-group">
+
+    <div class="list-group-item" style="height: 130px; padding-left: 0px !important;">
+
+
+      <h3 class="list-group-item-text">
+        Ficha
+      </h3>
+
+    </div>
+    <div class="list-group-item">
+      <p class="list-group-item-text"><strong>Detalles</strong></p>
+    </div>
+    <div class="list-group-item">
+      <p class="list-group-item-text">
+          <b>Cantidad de productos de este tipo:  </b><%=@cantidad %><br>
+          <b>Productos:</b>
+        <ul>
+          <%if @productos.length > 0 %>
+            <% @productos.each do |producto| %>
+              <li><%=producto.nombre_producto %></li>
+            <%end %>
+          <%else %>
+            <li>No existen productos de esta categoría</li>
+          <%end %>
+       </ul>
+      </p>
+    </div>
+  </div>
+</div>
+<br>
+
+<div>
+  <%=link_to 'Volver', types_path, :class => 'btn btn-primary' %>
+</div>
+
+<style>
+  .product-img{
+    width: auto;
+    height: 120px;
+  }
+
+</style>

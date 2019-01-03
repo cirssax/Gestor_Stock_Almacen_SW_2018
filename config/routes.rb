@@ -14,15 +14,6 @@ Rails.application.routes.draw do
 
   resources :products
 
-
-  #Ruta de los tipos
-  #get '/types/index', to: 'types#index'
-  #get '/types/new', to: 'types#new'
-  #post '/types', to: 'types#create'
-  #get '/types/:id/edit', to: 'types#edit', as: 'types_edit'
-  #patch '/types/:id', to: 'types#update'
-  #put '/types/:id', to: 'types#update'
-  #root :to =>'types#index'
   resources :types
 
   #Rutas de las vetnas
