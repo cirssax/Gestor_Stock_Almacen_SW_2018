@@ -1,18 +1,22 @@
 <% if @producto.errors.any? %>
   <div id="error_explanation">
-    <h2>
+    <h4>
       <%= pluralize(@producto.errors.count, "error") %>
-      Prohbido almacenar este usuario por:
-    </h2>
-    <ul>
-      <% @producto.errors.full_messages.each do |msg| %>
-        <li>
-          <%= msg %>
-        </li>
-      <% end %>
-    </ul>
+      Prohbido almacenar este producto por:
+    </h4>
+    <div class="alert alert-danger">
+      <a href="#" data-dismiss="alert" class="close">×</a>
+      <ul>
+        <% @producto.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 <% end %>
+
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>">
     <a href="#" data-dismiss="alert" class="close">×</a>

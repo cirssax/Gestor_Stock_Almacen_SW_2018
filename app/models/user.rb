@@ -8,10 +8,12 @@ class User < ApplicationRecord
   #validates_with MyValidator
   has_one :role
   has_one :state
+  has_many :sales
+  accepts_nested_attributes_for :sales
 
   VALID_NAME_REGEX = /(?=^.{2,50}$)[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)?/
   #Validaciones para el rut
-  validates :rut ,uniqueness: {message:"Rut ya existente"}, presence: {message: "Ingrese rut"}
+  validates :rut, rut:{message: "Rut invalido"} ,uniqueness: {message:"Rut ya existente"}, presence: {message: "Ingrese rut"}
   #Valicaciones para el domicilio
   validates :domicilio, length: {in: 2..100, :message => "Largo inadecuado de domicilio"}
   #Validacines para el fono

@@ -13,5 +13,15 @@ class HomeController < ApplicationController
       @Ventas = Sale.select("sales.fecha_venta as fecha, sales.id_trabajador as trabajador").where("sales.id_trabajador = '"+current_user.id.to_s+"'").group("sales.fecha_venta, sales.id_trabajador")
     end
     @CantidadVentas = @Ventas.length
+    #Cantidad de usuarios activos del sistema
+    @Usuarios = User.select("users.id").where("id_estado = 1")
+    @CantidadUsuarios = @Usuarios.length
+    #Alertas
+    @Productos  = Product.select("products.id").where("products.stock < 5")
+    @ProductosStockBajo = @Productos.length
+  end
+
+  def show
+    @Producto = Product.select("products.nombre_producto, products.stock").where("products.stock < 5")
   end
 end

@@ -1,18 +1,21 @@
 <% if @venta.errors.any? %>
   <div id="error_explanation">
-    <h2>
-      <%= pluralize(@venta.errors.count, "error") %>
+    <h4>
       No se pudo crear esta venta debido a:
-    </h2>
-    <ul>
-      <% @venta.errors.full_messages.each do |msg| %>
-        <li>
-          <%= msg %>
-        </li>
-      <% end %>
-    </ul>
+    </h4>
+    <div class="alert alert-danger">
+      <a href="#" data-dismiss="alert" class="close">×</a>
+      <ul>
+        <% @venta.errors.full_messages.each do |msg| %>
+          <li>
+            <%= msg %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 <% end %>
+
 <% flash.each do |key, value| %>
   <div class="alert alert-<%= key %>">
     <a href="#" data-dismiss="alert" class="close">×</a>
@@ -23,8 +26,7 @@
     </ul>
   </div>
 <% end %>
-
-<%=form_for @venta do|f| %>
+<%=form_for @venta do |f| %>
   <form class="form-horizontal">
     <div class="row">
       <div class="card-body">
@@ -35,20 +37,22 @@
           <div class="form-group col-md-6">
             <%= f.collection_select :id_producto, Product.select("products.nombre_producto, products.stock, products.id").where("products.stock > ?", 0), :id, :nombre_producto,  {:include_blank => true}, {:class => 'form-control btn btn-secondary dropdown-toggle'} %>
           </div>
-
           <div class="form-group col-md-6">
-            <%= f.select :cantidad, ((1..500).map {|i| [i,i] } << ["No limit",nil]),  {:include_blank => true}, {:class => 'form-control btn btn-secondary dropdown-toggle'} %>
+            <%= f.text_field :cantidad,class: "form-control", type: 'number' %>
           </div>
           <div class="form-group col-md-6">
             <%= f.submit 'Enviar', :class=> 'btn btn-primary'%>
             <%= link_to 'Cancelar', sales_index_path ,:class=> 'btn btn-danger' %>
           </div>
         </div>
-
       </div>
     </div>
   </form>
 <%end%>
+
+
+
+
 
 
 

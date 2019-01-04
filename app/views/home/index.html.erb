@@ -1,59 +1,87 @@
 <h1 class="page-header">Principal/Home</h1>
 
 <div class="row">
-  <div class="col-xs-12 col-md-6 col-lg-3">
-    <div class="panel-dashboard panel-blue panel-widget">
-      <div class="row no-padding">
-        <div class="col-sm-3 col-lg-5 widget-left">
 
-          <%= icon('cubes') %>
-        </div>
-        <div class="col-sm-9 col-lg-7 widget-right">
-          <div class="large"><%=@CantidadProductos %></div>
-          <div class="text-muted">Productos</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-12 col-md-6 col-lg-3">
-    <div class="panel-dashboard panel-orange panel-widget">
-      <div class="row no-padding">
-        <div class="col-sm-3 col-lg-5 widget-left">
-          <%= icon('shopping-bag') %>
-        </div>
-        <div class="col-sm-9 col-lg-7 widget-right">
-          <div class="large"><%=@CantidadVentas %></div>
-          <div class="text-muted">Ventas</div>
+
+  <a href="/products">
+    <div class="col-xs-12 col-md-6 col-lg-3">
+      <div class="panel-dashboard panel-blue panel-widget">
+        <div class="row no-padding">
+          <div class="col-sm-3 col-lg-5 widget-left">
+            <%= icon('cubes') %>
+          </div>
+          <div class="col-sm-9 col-lg-7 widget-right">
+            <div class="large"><%=@CantidadProductos %></div>
+            <div class="text-muted">Productos</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-xs-12 col-md-6 col-lg-3">
-    <div class="panel-dashboard panel-teal panel-widget">
-      <div class="row no-padding">
-        <div class="col-sm-3 col-lg-5 widget-left">
-          <%= icon('list-alt') %>
-        </div>
-        <div class="col-sm-9 col-lg-7 widget-right">
-          <div class="large">24</div>
-          <div class="text-muted">Invoices</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-xs-12 col-md-6 col-lg-3">
-    <div class="panel-dashboard panel-red panel-widget">
-      <div class="row no-padding">
-        <div class="col-sm-3 col-lg-5 widget-left">
-          <%= icon('exclamation-triangle') %>
-        </div>
-        <div class="col-sm-9 col-lg-7 widget-right">
-          <div class="large">0</div>
-          <div class="text-muted">Warnings</div>
+  </a>
+
+  <a href="/sales/index">
+    <div class="col-xs-12 col-md-6 col-lg-3">
+      <div class="panel-dashboard panel-orange panel-widget">
+        <div class="row no-padding">
+          <div class="col-sm-3 col-lg-5 widget-left">
+            <%= icon('shopping-bag') %>
+          </div>
+          <div class="col-sm-9 col-lg-7 widget-right">
+            <div class="large"><%=@CantidadVentas %></div>
+            <div class="text-muted">Ventas</div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </a>
+
+<% if current_user.id_rol == 1 %>
+    <a href="/users">
+      <div class="col-xs-12 col-md-6 col-lg-3">
+        <div class="panel-dashboard panel-teal panel-widget">
+          <div class="row no-padding">
+            <div class="col-sm-3 col-lg-5 widget-left">
+              <%= icon('list-alt') %>
+            </div>
+            <div class="col-sm-9 col-lg-7 widget-right">
+              <div class="large"><%=@CantidadUsuarios %></div>
+              <div class="text-muted">Usuarios</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  <%else %>
+    <div class="col-xs-12 col-md-6 col-lg-3">
+      <div class="panel-dashboard panel-teal panel-widget">
+        <div class="row no-padding">
+          <div class="col-sm-3 col-lg-5 widget-left">
+            <%= icon('list-alt') %>
+          </div>
+          <div class="col-sm-9 col-lg-7 widget-right">
+            <div class="large"><%=@CantidadUsuarios %></div>
+            <div class="text-muted">Usuarios</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <%end %>
+  <a href="/home/show">
+    <div class="col-xs-12 col-md-6 col-lg-3">
+      <div class="panel-dashboard panel-red panel-widget">
+        <div class="row no-padding">
+          <div class="col-sm-3 col-lg-5 widget-left">
+            <%= icon('exclamation-triangle') %>
+          </div>
+          <div class="col-sm-9 col-lg-7 widget-right">
+            <div class="large"><%=@ProductosStockBajo %></div>
+            <div class="text-muted">Alertas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </a>
+
 </div>
 <h2 class="sub-header">Section title</h2>
 <div class="table-responsive">

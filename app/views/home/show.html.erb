@@ -1,0 +1,50 @@
+<div class="panel panel-info bootcards-file">
+  <div class="panel-heading">
+    <h1 class="panel-title">Productos con bajo Stock</h1>
+  </div>
+  <div class="list-group">
+
+    <div class="list-group-item" style="height: 130px; padding-left: 0px !important;">
+
+
+      <h3 class="list-group-item-text">
+        Productos
+      </h3>
+      <div class="list-group-item-text">
+        <b>Lista de productos con un Stock menor a cinco unidades</b>
+      </div>
+
+    </div>
+    <div class="list-group-item">
+      <p class="list-group-item-text"><strong>Detalle</strong></p>
+    </div>
+    <div class="list-group-item">
+      <p class="list-group-item-text">
+      <ul>
+        <%@Producto.each do |producto| %>
+          <li>
+            <b>Nombre: </b><%=producto.nombre_producto %>
+          </li>
+          <li>
+            <b>Stock: </b><%=producto.stock  %>
+          </li>
+          <br>
+        <%end %>
+      </ul>
+      </p>
+    </div>
+  </div>
+</div>
+<br>
+
+<div>
+  <%=link_to 'Volver', root_path, :class => 'btn btn-primary' %>
+</div>
+
+<style>
+  .product-img{
+    width: auto;
+    height: 120px;
+  }
+
+</style>

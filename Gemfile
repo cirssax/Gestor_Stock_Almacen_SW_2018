@@ -30,9 +30,11 @@ gem 'devise'
 
 gem 'devise-i18n-views'
 
-gem 'rut_chileno'
+gem 'rut_validation'
 
 gem 'cancancan', '~> 2.0'
+
+gem 'nested_form_fields'
 
 #gem 'bootstrap-sass', '~> 3.3.6'
 

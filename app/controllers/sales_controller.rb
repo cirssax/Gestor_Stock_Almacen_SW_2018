@@ -52,20 +52,23 @@ class SalesController < ApplicationController
         stock_producto = Product.select("stock, nombre_producto, id").where("id = '"+ @venta.id_producto.to_s+"'")
         if @venta.cantidad.to_i > stock_producto[0].stock.to_i
           flash[:warning] = "Cantidad mayor al stock disponible"
-          flash[:notice] = "Stock disponible del producto: "+stock_producto[0].nombre_producto.to_s+": "+stock_producto[0].stock.to_s
+          flash[:warning] = "Stock disponible del producto: "+stock_producto[0].nombre_producto.to_s+": "+stock_producto[0].stock.to_s
           redirect_to new_sale_path
         else
           if @venta.save
             nuevo_stock = stock_producto[0].stock.to_i - @venta.cantidad.to_i
-            product = Product.find(stock_producto[0].id.to_i)
-            product.update_attribute :stock, nuevo_stock.to_s
-            flash[:succes] = "Venta realizada con exito"
-            redirect_to new_sale_path
-          else
-            render new_sale_path
-          end
-        end
-      end
+           product = Product.find(stock_producto[0].id.to_i)
+           product.update_attribute :stock, nuevo_stock.to_s
+           flash[:success] = "Venta realizada con exito"
+           if nuevo_stock < 5
+             flash[:danger] = "Stock de producto "+Product.find(@venta.id_producto).nombre_producto+" bajo, favor de realizar solicitud"
+           end
+           redirect_to new_sale_path
+         else
+           render new_sale_path
+         end
+       end
+     end
     end
   end
 

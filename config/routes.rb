@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
 
   root 'home#index'
+  get '/home/show', to: "home#show", as: 'warnings_descrips'
 
   #Ruta de los productos
   get 'products/index'
