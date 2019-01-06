@@ -7,14 +7,14 @@
         <th>Nombre</th>
         <th>Apellido</th>
         <th>Fecha de Venta</th>
-        <th>Accion</th>
+        <th></th>
       </tr>
-      <%@Ventas.each do |venta|%>
+      <%@Venta.each do |venta|%>
         <tr>
-          <td><%= User.find(venta.trabajador).nombre_trabajador %></td>
-          <td><%= User.find(venta.trabajador).apellidos_trabajador %></td>
-          <td><%= venta.fecha %></td>
-          <td><%= link_to 'Detalle', descrip_sale_path(venta.fecha), :class => 'btn btn-success btn-xs' %></td>
+          <td><%= User.find(venta.id_usuario).nombre_trabajador %></td>
+          <td><%= User.find(venta.id_usuario).apellidos_trabajador %></td>
+          <td><%= venta.fecha_venta %></td>
+          <td><%= link_to 'Detalle', descrip_sale_path(venta.id), :class => 'btn btn-success btn-xs' %></td>
         </tr>
       <% end %>
     </table>

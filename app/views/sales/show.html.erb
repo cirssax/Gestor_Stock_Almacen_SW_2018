@@ -5,10 +5,10 @@
   <div class="list-group">
     <div class="list-group-item" style="height: 130px; padding-left: 0px !important;">
       <h3 class="list-group-item-text">
-        Fecha de la venta: <%= @FechaVenta[10]+@FechaVenta[11]+@FechaVenta[12]+@FechaVenta[13]+@FechaVenta[14]+@FechaVenta[15]+@FechaVenta[16]+@FechaVenta[17]+@FechaVenta[18]+@FechaVenta[10]+@FechaVenta[8]+@FechaVenta[9]+@FechaVenta[7]+@FechaVenta[5]+@FechaVenta[6]+@FechaVenta[4]+@FechaVenta[0]+@FechaVenta[1]+@FechaVenta[2]+@FechaVenta[3]%>
+        Fecha de la venta: <%= @FechaVenta%>
       </h3>
       <div class="list-group-item-text">
-        <b>Vendedor: </b><%=User.find(@worker[0].id_trabajador).nombre_trabajador %> <%=User.find(@worker[0].id_trabajador).apellidos_trabajador %></li>
+        <b>Vendedor: </b><%=User.find(@worker[0].id_usuario).nombre_trabajador %> <%=User.find(@worker[0].id_usuario).apellidos_trabajador %></li>
       </div>
 
     </div>
@@ -18,18 +18,18 @@
     <div class="list-group-item">
       <%@descripcionVenta.each do |venta|%>
         <p class="list-group-item-text">
-          <ul>
-            <li>
-              <b>Producto <%=@Productos.find(venta.id_producto).nombre_producto %> </b>
-            </li>
-            <li>
-              <b>Cantidad: <%=venta.cantidad  %></b>
-            </li>
-            <li>
-              <b>Sub Total: $<%=@Productos.find(venta.id_producto).precio * venta.cantidad %></b>
-            </li>
-            <% @CostoTotal = @CostoTotal + @Productos.find(venta.id_producto).precio * venta.cantidad %>
-          </ul>
+        <ul>
+          <li>
+            <b>Producto <%=@Productos.find(venta.id_producto).nombre_producto %> </b>
+          </li>
+          <li>
+            <b>Cantidad: <%=venta.cantidad  %></b>
+          </li>
+          <li>
+            <b>Sub Total: $<%=@Productos.find(venta.id_producto).precio * venta.cantidad %></b>
+          </li>
+          <% @CostoTotal = @CostoTotal + @Productos.find(venta.id_producto).precio * venta.cantidad %>
+        </ul>
         </p>
       <%end %>
     </div>
@@ -51,4 +51,3 @@
   }
 
 </style>
-

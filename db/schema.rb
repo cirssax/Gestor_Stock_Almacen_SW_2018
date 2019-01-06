@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_03_032112) do
+ActiveRecord::Schema.define(version: 2019_01_05_170249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "id_producto"
+    t.integer "cantidad"
+    t.integer "sale_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.integer "id_tipo"
@@ -31,12 +37,10 @@ ActiveRecord::Schema.define(version: 2019_01_03_032112) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.integer "id_producto"
-    t.integer "id_trabajador"
+    t.integer "id_usuario"
     t.datetime "fecha_venta"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "cantidad"
   end
 
   create_table "states", force: :cascade do |t|
@@ -70,9 +74,10 @@ ActiveRecord::Schema.define(version: 2019_01_03_032112) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "carts", "products", column: "id_producto"
+  add_foreign_key "carts", "sales"
   add_foreign_key "products", "types", column: "id_tipo"
-  add_foreign_key "sales", "products", column: "id_producto"
-  add_foreign_key "sales", "users", column: "id_trabajador"
+  add_foreign_key "sales", "users", column: "id_usuario"
   add_foreign_key "users", "roles", column: "id_rol"
   add_foreign_key "users", "states", column: "id_estado"
 end

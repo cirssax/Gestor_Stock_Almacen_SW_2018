@@ -23,6 +23,6 @@ Rails.application.routes.draw do
 
   resources :sales
 
-  get '/sales/:fecha_venta/', to: 'sales#show', as: 'descrip_sale'
+  get '/sales/:sale_id/', to: 'sales#show', as: 'descrip_sale'
 
 end

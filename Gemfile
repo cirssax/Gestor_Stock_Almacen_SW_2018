@@ -34,7 +34,7 @@ gem 'rut_validation'
 
 gem 'cancancan', '~> 2.0'
 
-gem 'nested_form_fields'
+gem "nested_form"
 
 #gem 'bootstrap-sass', '~> 3.3.6'
 

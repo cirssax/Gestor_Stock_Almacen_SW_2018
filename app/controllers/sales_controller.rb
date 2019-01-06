@@ -3,77 +3,53 @@ class SalesController < ApplicationController
 
   def index
     if current_user.id_rol == 1
-      @Ventas = Sale.select("sales.fecha_venta as fecha, sales.id_trabajador as trabajador").group("sales.fecha_venta, sales.id_trabajador")
-
+      @Venta = Sale.select("id, id_usuario, fecha_venta")
     else
-      @Ventas = Sale.select("sales.fecha_venta as fecha, sales.id_trabajador as trabajador").where("sales.id_trabajador = '"+current_user.id.to_s+"'").group("sales.fecha_venta, sales.id_trabajador")
+      @Venta = Sale.select("id, id_usuario, fecha_venta").where("id_usuario = ?", current_user.id)
     end
+
   end
 
   def show
-    @FechaVenta = params[:id]
-    anio = @FechaVenta[0]+@FechaVenta[1]+@FechaVenta[2]+@FechaVenta[3]
-    month = @FechaVenta[5]+@FechaVenta[6]
-    day = @FechaVenta[8]+@FechaVenta[9]
-    hour = @FechaVenta[11]+@FechaVenta[12]
-    minutes = @FechaVenta[14]+@FechaVenta[15]
-    seconds = @FechaVenta[17]+@FechaVenta[18]
-    sentencia = "date_part('year', fecha_venta) = '"+anio+"' AND
-                date_part('month', fecha_venta) = '"+month+"' AND
-                date_part('day', fecha_venta) = '"+day+"' AND
-                date_part('hour', fecha_venta) = '"+hour+"' AND
-                date_part('minutes', fecha_venta) = '"+minutes+"' AND
-                trunc(date_part('seconds', fecha_venta)) = '"+seconds+"'"
+    id_venta = params[:id]
+    @worker = Sale.select("id_usuario, fecha_venta").where("id = ?",id_venta)
 
-    @worker = Sale.select("id_trabajador").where(sentencia)
+    @FechaVenta = @worker[0].fecha_venta
 
-    @descripcionVenta = Sale.select("sales.id_producto, sales.cantidad").where(sentencia)
+    @descripcionVenta = Cart.select("id_producto, cantidad").where("sale_id = ?", id_venta)
 
     @Productos = Product.select("id, precio, nombre_producto")
+
     @CostoTotal = 0
   end
 
   def new
     @venta = Sale.new
+    #2.times {@venta.carts.build}
   end
 
   def create
-    @venta = Sale.new(sale_params)
-    if @venta.id_producto == nil
-      flash[:warning] = "Seleccione un producto"
+    if params[:sale] == nil
+      flash[:danger] = "Debe añadir productos con cantidades"
+      @venta = Sale.new
       render new_sale_path
     else
-      if @venta.cantidad == nil
-        flash[:warning] = "Seleccione una cantidad"
-        render new_sale_path
-      else
-        @venta.id_trabajador= current_user.id
+      @venta = Sale.create(sale_params)
+        @venta.id_usuario= current_user.id
         @venta.fecha_venta = DateTime.now
-        stock_producto = Product.select("stock, nombre_producto, id").where("id = '"+ @venta.id_producto.to_s+"'")
-        if @venta.cantidad.to_i > stock_producto[0].stock.to_i
-          flash[:warning] = "Cantidad mayor al stock disponible"
-          flash[:warning] = "Stock disponible del producto: "+stock_producto[0].nombre_producto.to_s+": "+stock_producto[0].stock.to_s
-          redirect_to new_sale_path
+        if(@venta.save)
+          redirect_to sales_index_path
         else
-          if @venta.save
-            nuevo_stock = stock_producto[0].stock.to_i - @venta.cantidad.to_i
-           product = Product.find(stock_producto[0].id.to_i)
-           product.update_attribute :stock, nuevo_stock.to_s
-           flash[:success] = "Venta realizada con exito"
-           if nuevo_stock < 5
-             flash[:danger] = "Stock de producto "+Product.find(@venta.id_producto).nombre_producto+" bajo, favor de realizar solicitud"
-           end
-           redirect_to new_sale_path
-         else
-           render new_sale_path
-         end
-       end
-     end
+          render new_sale_path
+        end
     end
   end
 
   private
+
   def sale_params
-    params.require(:sale).permit(:id_producto, :cantidad, :fecha_venta, :id_trabajador)
+    #params.fetch(:sale, {}).permit(:fecha_venta, :id_usuario, carts_attributes: [:id ,:id_producto, :cantidad,:_destroy])
+    params.require(:sale).permit(:fecha_venta, :id_usuario, carts_attributes: [:id ,:id_producto, :cantidad,:_destroy])
+    #params.require(:sale).permit(:fecha_venta, :id_usuario, cart_attributes: Cart.attribute_names.map(&:to_sym).push(:_destroy))
   end
 end

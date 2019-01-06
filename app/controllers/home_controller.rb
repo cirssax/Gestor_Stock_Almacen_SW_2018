@@ -8,9 +8,9 @@ class HomeController < ApplicationController
     @CantidadProductos = @productos.length
     #Cantidad de ventas (separada por tipo de usuario)
     if current_user.id_rol == 1
-      @Ventas = Sale.select("sales.fecha_venta as fecha, sales.id_trabajador as trabajador").group("sales.fecha_venta, sales.id_trabajador")
+      @Ventas = Sale.select("sales.fecha_venta as fecha, sales.id_usuario as trabajador").group("sales.fecha_venta, sales.id_usuario")
     else
-      @Ventas = Sale.select("sales.fecha_venta as fecha, sales.id_trabajador as trabajador").where("sales.id_trabajador = '"+current_user.id.to_s+"'").group("sales.fecha_venta, sales.id_trabajador")
+      @Ventas = Sale.select("sales.fecha_venta as fecha, sales.id_usuario as trabajador").where("sales.id_usuario = '"+current_user.id.to_s+"'").group("sales.fecha_venta, sales.id_usuario")
     end
     @CantidadVentas = @Ventas.length
     #Cantidad de usuarios activos del sistema
