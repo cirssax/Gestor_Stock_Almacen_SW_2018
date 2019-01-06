@@ -5,7 +5,7 @@
   <div class="list-group">
     <div class="list-group-item" style="height: 130px; padding-left: 0px !important;">
       <h3 class="list-group-item-text">
-        Fecha de la venta: <%= @FechaVenta%>
+        Fecha de la venta: <%= @FechaVenta.strftime('%d-%m-%Y  %I:%M:%S')%>
       </h3>
       <div class="list-group-item-text">
         <b>Vendedor: </b><%=User.find(@worker[0].id_usuario).nombre_trabajador %> <%=User.find(@worker[0].id_usuario).apellidos_trabajador %></li>

@@ -33,29 +33,37 @@
   <div class="form-group col-md-12">
     <label class="form-control">Vendedor:  <%= current_user.nombre_trabajador%></label>
   </div>
-
-
-    <%= f.fields_for :carts do |carro| %>
-      <form class="form-horizontal">
-        <div class="card-body">
-          <div class="form-row">
-            <div class="form-group col-md-5">
-              <%= carro.collection_select :id_producto, Product.select("products.nombre_producto, products.stock, products.id").where("products.stock > ?", 0), :id, :nombre_producto,  {:include_blank => true}, {:class => 'form-control btn btn-secondary dropdown-toggle'} %>
-            </div>
-            <div class="form-group col-md-5">
-              <%= carro.text_field :cantidad, class: "form-control", type: 'number' %>
-            </div>
-            <div class="form-group col-md-2">
-              <%= carro.link_to_remove "Eliminar", :class=> 'btn btn-danger btn-sm' %>
-            </div>
-          </div>
-        </div>
-      </form>
-    <% end %>
-  <%= f.link_to_add "Agregar Producto", :carts , :class=> 'btn btn-default btn-sm'%>
+  <table id="cart" class="tab">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.fields_for :carts, :wrapper => false do |carro| %>
+        <tr class="fields">
+          <td>
+            <%= carro.collection_select :id_producto, Product.select("products.nombre_producto, products.stock, products.id").where("products.stock > ?", 0), :id, :nombre_producto,  {:include_blank => true}, {:class => 'form-control btn btn-secondary dropdown-toggle'} %>
+          </td>
+          <td>
+            <%= carro.text_field :cantidad, class: "form-control", type: 'number' %>
+          </td>
+          <td>
+            <%= carro.link_to_remove "Eliminar", :class=> 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+        <br>
+      <% end %>
+    </tbody>
+  </table>
+    <p>
+      <%= f.link_to_add "Agregar Producto", :carts , :class=> 'btn btn-default btn-sm', "data-target" => "#cart"%>
+    </p>
+  <br>
 
   <div class="form-actions">
-
     <%= f.submit  "Enviar" , :class=> 'btn btn-primary'%>
     <%= link_to 'Cancelar', sales_index_path ,:class=> 'btn btn-danger' %>
   </div>

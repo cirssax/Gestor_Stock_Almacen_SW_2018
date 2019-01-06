@@ -28,10 +28,10 @@
           <b>Precio: $<%=@producto.precio  %></b>
         </li>
         <li>
-          <b>Fecha de Creación: <%=@producto.created_at  %></b>
+          <b>Fecha de Creación: <%=@producto.created_at.strftime('%d-%m-%Y  %I:%M:%S')%></b>
         </li>
         <li>
-          <b>Fecha de Última modificación: <%=@producto.updated_at  %></b>
+          <b>Fecha de Última modificación: <%=@producto.updated_at.strftime('%d-%m-%Y  %I:%M:%S') %></b>
         </li>
       </ul>
       </p>

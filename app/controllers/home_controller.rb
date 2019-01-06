@@ -19,9 +19,44 @@ class HomeController < ApplicationController
     #Alertas
     @Productos  = Product.select("products.id").where("products.stock < 5")
     @ProductosStockBajo = @Productos.length
+    #Tablas de últimas ventas
+    @UltimasVentas = Sale.last(5)
+    #Genero un arreglo de cada venta
+    @ListaVenta = []
+    @UltimasVentas.each do |venta|
+      #Obtencion del producto y la cantidad
+      @Productos = Cart.select("id_producto, cantidad").where("sale_id = ?", venta.id.to_s)
+      monto = 0
+      #Se calcula el monto total vendido
+      @Productos.each do |costo|
+        #Obtencion del costo unitario del producto
+        @CostoUnitario = Product.select("precio").where("id = ?", costo.id_producto)
+        monto = monto + (costo.cantidad.to_i * @CostoUnitario[0].precio.to_i)
+      end
+      l1 = Lista.new(monto, venta.id_usuario, venta.fecha_venta)
+      @ListaVenta.push(l1)
+    end
+
+
+
+
   end
 
   def show
     @Producto = Product.select("products.nombre_producto, products.stock").where("products.stock < 5")
   end
+
+  private
+  class Lista
+    attr_accessor :monto
+    attr_accessor :usuario
+    attr_accessor :fecha
+
+    def initialize(monto, usuario, fecha)
+      @monto = monto
+      @usuario = usuario
+      @fecha = fecha
+    end
+  end
+
 end

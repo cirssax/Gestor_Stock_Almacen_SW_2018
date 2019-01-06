@@ -54,11 +54,11 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <label form-label>Creación:</label>
-          <input class="form-control" value="<%=@producto.created_at%>" disabled="disabled">
+          <input class="form-control" value="<%=@producto.created_at.strftime('%d-%m-%Y  %I:%M:%S')%>" disabled="disabled">
         </div>
         <div class="form-group col-md-6">
           <label class="form-label">Ultima Modoficación:</label>
-          <input class="form-control" value="<%=@producto.updated_at %>" disabled="disabled">
+          <input class="form-control" value="<%=@producto.updated_at.strftime('%d-%m-%Y  %I:%M:%S') %>" disabled="disabled">
         </div>
       </div>
     </div>

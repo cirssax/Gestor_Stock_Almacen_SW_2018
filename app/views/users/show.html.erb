@@ -50,10 +50,10 @@
                 <b>Domicilio: </b><%=@user.domicilio%>
               </li>
               <li>
-                <b>Fecha de Creación: </b><%=@user.created_at%>
+                <b>Fecha de Creación: </b><%=@user.created_at.strftime('%d-%m-%Y  %I:%M:%S')%>
               </li>
               <li>
-                <b>Fecha de Última modificación: </b><%=@user.updated_at%>
+                <b>Fecha de Última modificación: </b><%=@user.updated_at.strftime('%d-%m-%Y  %I:%M:%S')%>
               </li>
             </ul>
           </p>

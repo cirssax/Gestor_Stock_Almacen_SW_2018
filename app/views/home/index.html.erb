@@ -83,26 +83,26 @@
   </a>
 
 </div>
-<h2 class="sub-header">Section title</h2>
+<h2 class="sub-header">Ultimas cinco ventas realizadas</h2>
 <div class="table-responsive">
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>#</th>
-      <th>Header</th>
-      <th>Header</th>
-      <th>Header</th>
-      <th>Header</th>
+      <th>Monto</th>
+      <th>Vendedor</th>
+      <th>Fecha</th>
+      <th>Hora</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <td>1,001</td>
-      <td>Lorem</td>
-      <td>ipsum</td>
-      <td>dolor</td>
-      <td>sit</td>
-    </tr>
+    <%@ListaVenta.each do |venta| %>
+      <tr>
+        <td>$<%=venta.monto %></td>
+        <td><%=User.find(venta.usuario).nombre_trabajador%> <%=User.find(venta.usuario).apellidos_trabajador %></td>
+        <td><%=venta.fecha.strftime('%d-%m-%Y') %></td>
+        <td><%=venta.fecha.strftime('%I:%M:%S') %></td>
+      </tr>
+    <%end %>
     </tbody>
   </table>
 </div>
