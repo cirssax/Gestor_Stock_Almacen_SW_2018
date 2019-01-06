@@ -100,7 +100,7 @@
         <td>$<%=venta.monto %></td>
         <td><%=User.find(venta.usuario).nombre_trabajador%> <%=User.find(venta.usuario).apellidos_trabajador %></td>
         <td><%=venta.fecha.strftime('%d-%m-%Y') %></td>
-        <td><%=venta.fecha.strftime('%I:%M:%S') %></td>
+        <td><%=venta.fecha.strftime('%H:%M:%S') %></td>
       </tr>
     <%end %>
     </tbody>

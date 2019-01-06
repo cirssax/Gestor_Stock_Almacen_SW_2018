@@ -13,7 +13,7 @@
         <tr>
           <td><%= User.find(venta.id_usuario).nombre_trabajador %></td>
           <td><%= User.find(venta.id_usuario).apellidos_trabajador %></td>
-          <td><%= venta.fecha_venta.strftime('%d-%m-%Y  %I:%M:%S') %></td>
+          <td><%= venta.fecha_venta.strftime('%d-%m-%Y  %H:%M:%S') %></td>
           <td><%= link_to 'Detalle', descrip_sale_path(venta.id), :class => 'btn btn-success btn-xs' %></td>
         </tr>
       <% end %>

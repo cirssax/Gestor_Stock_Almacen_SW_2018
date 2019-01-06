@@ -28,10 +28,10 @@
           <b>Precio: $<%=@producto.precio  %></b>
         </li>
         <li>
-          <b>Fecha de Creación: <%=@producto.created_at.strftime('%d-%m-%Y  %I:%M:%S')%></b>
+          <b>Fecha de Creación: <%=@producto.created_at.strftime('%d-%m-%Y  %H:%M:%S')%></b>
         </li>
         <li>
-          <b>Fecha de Última modificación: <%=@producto.updated_at.strftime('%d-%m-%Y  %I:%M:%S') %></b>
+          <b>Fecha de Última modificación: <%=@producto.updated_at.strftime('%d-%m-%Y  %H:%M:%S') %></b>
         </li>
       </ul>
       </p>
@@ -43,11 +43,3 @@
 <div>
   <%=link_to 'Volver', products_index_path, :class => 'btn btn-primary' %>
 </div>
-
-<style>
-  .product-img{
-    width: auto;
-    height: 120px;
-  }
-
-</style>

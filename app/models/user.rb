@@ -12,11 +12,12 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :sales
 
   VALID_NAME_REGEX = /(?=^.{2,50}$)[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)?/
+  VALID_CORREO_REGEX = /\A\S+@.+\.\S+\z/
   #Validaciones para el rut
-  validates :rut, rut:{message: "Rut invalido"} ,uniqueness: {message:"Rut ya existente"}, presence: {message: "Ingrese rut"}
+  validates :rut, rut:{message: "Rut invalido"}, uniqueness: {message:"Rut ya existente"}, presence: {message: "Ingrese rut"}
   #Valicaciones para el domicilio
   validates :domicilio, length: {in: 2..100, :message => "Largo inadecuado de domicilio"}
-  #Validacines para el fono
+  #Validacines para el fono,uniqueness: {message:"Rut ya existente"}
   validates :fono, numericality: {message: "Por favor ingrese solamente numeros en este campo", only_integer: true} #, on: :create
   #Validaciones para el nombre
   validates :nombre_trabajador, length: { in: 2..50 , :message => "Largo inadecuado de nombre"},  format: { with: VALID_NAME_REGEX , :message => "Formato invalido"}
@@ -26,5 +27,7 @@ class User < ApplicationRecord
   validates :id_estado, presence: {message: "Debe seleccionar un estado"}
   #Validaciones para el rol
   validates :id_rol, presence: {message: "Debe seleccionar un rol"}
+  #Validacion del correo
+  validates :email, format:  {with: VALID_CORREO_REGEX, :message => "Forma invalido de correo"}
 end
 
