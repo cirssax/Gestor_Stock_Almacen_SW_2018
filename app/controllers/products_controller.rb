@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 
     if @producto.save
       flash[:succes] = "Almacenamiento correcto"
-      redirect_to products_index_path
+      redirect_to new_product_path
     else
       render :new
     end
@@ -43,7 +43,8 @@ class ProductsController < ApplicationController
       @producto = Product.find(params[:id])
 
       if @producto.update(producto_params)
-        redirect_to products_index_path
+        flash[:success] = "Producto actualizado"
+        redirect_to new_product_path
       else
         render products_index_path
       end

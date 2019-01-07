@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     else
       @user = User.new(user_params)
       if @user.save
-        redirect_to users_path
+        redirect_to new_users_path
       else
         render new_user_path
       end
@@ -48,7 +48,8 @@ class UsersController < ApplicationController
     else
       @user = User.find(params[:id])
       if @user.update(user_params)
-        redirect_to users_path
+        flash[:success] = "Usuario actualizado correctamente"
+        redirect_to new_user_path
       else
         render :edit
       end

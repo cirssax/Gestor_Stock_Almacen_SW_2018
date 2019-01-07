@@ -19,10 +19,10 @@ class TypesController < ApplicationController
     else
       @types = Type.new(tipo_params)
       if @types.save
-        flash[:succes] = "Almacenamiento correcto"
-        redirect_to types_index_path
+        flash[:success] = "Almacenamiento correcto"
+        redirect_to new_type_path
       else
-        render types_new_path
+        render new_type_path
       end
     end
   end
@@ -40,6 +40,21 @@ class TypesController < ApplicationController
     @tipo = Type.find(params[:id])
     @productos = Product.select("products.nombre_producto").where("products.id_tipo = (?) ", Type.select("types.id").where("types.id='"+params[:id]+"'"))
     @cantidad =  @productos.length.to_s
+  end
+
+  def update
+    if current_user.id_rol != 1
+      flash[:warning] = "No posee los roles para esta acción"
+    else
+      @tipo = Type.find(params[:id])
+
+      if @tipo.update(tipo_params)
+        flash[:success] = "Tipo de producto actualizado"
+        redirect_to new_type_path
+      else
+        render :new
+      end
+    end
   end
 
   private

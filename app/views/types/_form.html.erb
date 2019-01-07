@@ -37,16 +37,12 @@
             <%= f.label 'Descripcion de Tipo', :class => 'form-label' %><br>
             <%= f.text_field :descrip_tipo,class: "form-control" %>
           </div>
-
         </div>
       </div>
     </div>
+    <div class="form-actions">
+      <%= f.submit 'Guardar', :class=> 'btn btn-primary' %>
+      <%= link_to 'Volver', types_path, :class=> 'btn btn-danger' %>
+    </div>
   </form>
-  <div>
-
-  </div>
-  <div>
-    <%= f.submit 'Enviar', :class=> 'btn btn-primary' %>
-    <%= link_to 'Volver', types_path, :class=> 'btn btn-danger' %>
-  </div>
 <% end %>
