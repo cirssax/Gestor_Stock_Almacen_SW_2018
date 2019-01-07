@@ -3,26 +3,30 @@
 <%if current_user.id_rol == 1 %>
   <div class="col-12 col-sm-12 col-lg-12">
     <div class="table-responsive">
-      <table class="table table-hover table-striped shadow-2dp">
-        <tr class="info">
-          <th>Nombre</th>
-          <th>Apellidos</th>
-          <th>Rut</th>
-          <th>Rol</th>
-          <th>Accion</th>
-        </tr>
-        <%@users.each do |user|%>
-          <tr>
-            <td><%= user.nombre_trabajador %></td>
-            <td><%= user.apellidos_trabajador %></td>
-            <td><%= user.rut %></td>
-            <td><%= @rol.find(user.id_rol).descrip_rol %></td>
-            <td>
-              <%= link_to 'Editar', edit_user_path(user.id), :class => 'btn btn-success btn-xs'%>
-              <%= link_to 'Ficha', user_path(user.id), :class => 'btn btn-info btn-xs'%>
-            </td>
+      <table class="table table-hover table-striped shadow-2dp" role="datatable">
+        <thead>
+          <tr class="info">
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Rut</th>
+            <th>Rol</th>
+            <th>Accion</th>
           </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <%@users.each do |user|%>
+            <tr>
+              <td><%= user.nombre_trabajador.titleize %></td>
+              <td><%= user.apellidos_trabajador.titleize %></td>
+              <td><%= user.rut %></td>
+              <td><%= @rol.find(user.id_rol).descrip_rol.capitalize %></td>
+              <td>
+                <%= link_to 'Editar', edit_user_path(user.id), :class => 'btn btn-success btn-xs'%>
+                <%= link_to 'Ficha', user_path(user.id), :class => 'btn btn-info btn-xs'%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
       </table>
     </div>
   </div>

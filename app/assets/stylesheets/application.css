@@ -13,6 +13,7 @@
  *= require font-awesome
  *= require flatfy.css
  *= require signin.css
+ *= require datatables
  *= require_tree .
  *= require_self
  */

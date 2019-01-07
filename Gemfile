@@ -36,6 +36,9 @@ gem 'cancancan', '~> 2.0'
 
 gem "nested_form"
 
+gem 'rails-assets-jquery', source: 'https://rails-assets.org'
+gem 'rails-assets-datatables', source: 'https://rails-assets.org'
+
 #gem 'bootstrap-sass', '~> 3.3.6'
 
 gem "paperclip", "~> 5.0.0"

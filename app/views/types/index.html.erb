@@ -1,36 +1,43 @@
 <h2>Listado de tipos</h2>
 <div class="col-12 col-sm-12 col-lg-12">
   <div class="table-responsive">
-    <table class="table table-hover table-striped shadow-2dp">
+    <table class="table table-hover table-striped shadow-2dp" role="datatable">
       <%if current_user.id_rol == 1 %>
-        <tr class="info">
-          <th>Tipo</th>
-          <th>Acction</th>
-        </tr>
-        <% @types.each do |tipo| %>
-          <tr>
-            <td><%= tipo.descrip_tipo %></td>
-            <td>
-              <%= link_to 'Editar',edit_type_path(tipo.id), :class=> 'btn btn-success btn-xs' %>
-              <%= link_to 'Ficha',type_path(tipo.id), :class=> 'btn btn-info btn-xs' %>
-            </td>
+        <thead>
+          <tr class="info">
+            <th>Tipo</th>
+            <th>Acction</th>
           </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <% @types.each do |tipo| %>
+            <tr>
+              <td><%= tipo.descrip_tipo.capitalize%></td>
+              <td>
+                <%= link_to 'Editar',edit_type_path(tipo.id), :class=> 'btn btn-success btn-xs' %>
+                <%= link_to 'Ficha',type_path(tipo.id), :class=> 'btn btn-info btn-xs' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
       <%else %>
-        <tr class="info">
-          <th>Tipo de Productos</th>
-          <th></th>
-        </tr>
-        <% @types.each do |tipo| %>
-          <tr>
-            <td><%= tipo.descrip_tipo %></td>
-            <td>
-              <%= link_to 'Ficha',type_path(tipo.id), :class=> 'btn btn-info btn-xs' %>
-            </td>
+        <thead>
+          <tr class="info">
+            <th>Tipo de Productos</th>
+            <th></th>
           </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <% @types.each do |tipo| %>
+            <tr>
+              <td><%= tipo.descrip_tipo %></td>
+              <td>
+                <%= link_to 'Ficha',type_path(tipo.id), :class=> 'btn btn-info btn-xs' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
       <%end %>
-
     </table>
   </div>
 </div>

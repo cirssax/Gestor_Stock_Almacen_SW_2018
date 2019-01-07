@@ -33,8 +33,14 @@ class UsersController < ApplicationController
       flash[:warning] = "No posee los roles para esta acción"
     else
       @user = User.new(user_params)
+      @usuarios = User.select("nombre_trabajador, apellidos_trabajador")
+      @usuarios.each do |usr|
+        if usr.nombre_trabajador == @user.nombre_trabajador.upcase && usr.apellidos_trabajador == @user.apellidos_trabajador.upcase
+          flash[:danger] ="Ya existe un trabajador con esos nombres y apellidos"
+        end
+      end
       if @user.save
-        redirect_to new_users_path
+        redirect_to new_user_path
       else
         render new_user_path
       end

@@ -1,27 +1,30 @@
 <h2>Lista de Ventas</h2>
 
-<div>
-  <%= link_to 'Nueva venta' , new_sale_path, :class => 'btn btn-primary'%>
-</div>
-<br>
-
 <div class="col-12 col-sm-12 col-lg-12">
   <div class="table-responsive">
-    <table class="table table-hover table-striped shadow-2dp">
-      <tr class="info">
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Fecha de Venta</th>
-        <th></th>
-      </tr>
-      <%@Venta.each do |venta|%>
-        <tr>
-          <td><%= User.find(venta.id_usuario).nombre_trabajador %></td>
-          <td><%= User.find(venta.id_usuario).apellidos_trabajador %></td>
-          <td><%= venta.fecha_venta.strftime('%d-%m-%Y  %H:%M:%S') %></td>
-          <td><%= link_to 'Detalle', descrip_sale_path(venta.id), :class => 'btn btn-success btn-xs' %></td>
+    <table class="table table-hover table-striped shadow-2dp" role="datatable">
+      <thead>
+        <tr class="info">
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Fecha de Venta</th>
+          <th></th>
         </tr>
-      <% end %>
+      </thead>
+      <tbody>
+        <%@Venta.each do |venta|%>
+          <tr>
+            <td><%= User.find(venta.id_usuario).nombre_trabajador.titleize %></td>
+            <td><%= User.find(venta.id_usuario).apellidos_trabajador.titleize %></td>
+            <td><%= venta.fecha_venta.strftime('%d-%m-%Y  %H:%M:%S') %></td>
+            <td><%= link_to 'Detalle', descrip_sale_path(venta.id), :class => 'btn btn-success btn-xs' %></td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
+</div>
+<br>
+<div class="form-actions">
+  <%= link_to 'Nueva venta' , new_sale_path, :class => 'btn btn-primary'%>
 </div>

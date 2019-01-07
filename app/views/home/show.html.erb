@@ -1,3 +1,10 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li>Alertas</li>
+  </ol>
+</div>
+
 <div class="panel panel-info bootcards-file">
   <div class="panel-heading">
     <h1 class="panel-title">Productos con bajo Stock</h1>
@@ -20,7 +27,7 @@
       <ul>
         <%@Producto.each do |producto| %>
           <li>
-            <b>Nombre: </b><%=producto.nombre_producto %>
+            <b>Nombre: </b><%=producto.nombre_producto.capitalize %>
           </li>
           <li>
             <b>Stock: </b><%=producto.stock  %>

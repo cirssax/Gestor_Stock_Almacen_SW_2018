@@ -1,5 +1,12 @@
 <h3>Edicion de Tipo de Producto</h3>
 
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="/types">Listado de Tipos</a></li>
+    <li>Editar Tipo</li>
+  </ol>
+</div>
+
 <%if current_user.id_rol == 1 %>
   <%= render 'form' %>
 <%end %>

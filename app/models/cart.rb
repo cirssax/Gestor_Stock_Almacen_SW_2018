@@ -8,6 +8,7 @@ class Cart < ApplicationRecord
 
 
 
+
   def Cantidad_Stock
     if id_producto != nil
       producto = Product.select("stock, nombre_producto, id").where("id = ?", id_producto)

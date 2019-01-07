@@ -1,5 +1,12 @@
 <h3>Nuevo Usuario</h3>
 
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="/users">Listado de Usuarios</a></li>
+    <li>Nuevo Usuario</li>
+  </ol>
+</div>
+
 <%if current_user.id_rol == 1 %>
   <%= render 'form' %>
 <%end %>

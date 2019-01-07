@@ -2,40 +2,48 @@
 
 <div class="col-12 col-sm-12 col-lg-12">
   <div class="table-responsive">
-    <table class="table table-hover table-striped shadow-2dp">
+    <table class="table table-hover table-striped shadow-2dp" role="datatable">
       <%if current_user.id_rol == 1 %>
-        <tr class="info">
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th></th>
-        </tr>
-        <% @Productos.each do |producto|  %>
-          <tr>
-            <td><%= producto.nombre_producto %></td>
-            <td><%= producto.precio %></td>
-              <td>
-                <%= link_to 'Editar', edit_product_path(producto.id), :class => 'btn btn-success btn-xs' %>
-                <%= link_to 'Ficha', product_path(producto.id), :class => 'btn btn-info btn-xs' %>
-              </td>
+        <thead>
+          <tr class="info">
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th></th>
           </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <% @Productos.each do |producto|  %>
+            <tr>
+              <td><%= producto.nombre_producto.capitalize %></td>
+              <td><%= producto.precio %></td>
+                <td>
+                  <%= link_to 'Editar', edit_product_path(producto.id), :class => 'btn btn-success btn-xs' %>
+                  <%= link_to 'Ficha', product_path(producto.id), :class => 'btn btn-info btn-xs' %>
+                </td>
+            </tr>
+          <% end %>
+        </tbody>
       <%else %>
-        <tr class="info">
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th>Stock</th>
-          <th></th>
-        </tr>
-        <% @Productos.each do |producto|  %>
-          <tr>
-            <td><%= producto.nombre_producto %></td>
-            <td><%= producto.precio %></td>
-            <td><%= producto.stock %></td>
-            <td>
-              <%= link_to 'Ficha', product_path(producto.id), :class => 'btn btn-success btn-xs' %>
-            </td>
+        <thead>
+          <tr class="info">
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th></th>
           </tr>
-        <% end %>
+        </thead>
+        <tbody>
+          <% @Productos.each do |producto|  %>
+            <tr>
+              <td><%= producto.nombre_producto %></td>
+              <td><%= producto.precio %></td>
+              <td><%= producto.stock %></td>
+              <td>
+                <%= link_to 'Ficha', product_path(producto.id), :class => 'btn btn-success btn-xs' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
       <%end %>
     </table>
   </div>

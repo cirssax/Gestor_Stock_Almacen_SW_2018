@@ -1,3 +1,10 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="/sales/index">Listado de Ventas</a></li>
+    <li>Ficha de Venta</li>
+  </ol>
+</div>
+
 <div class="panel panel-info bootcards-file">
   <div class="panel-heading">
     <h1 class="panel-title">Detalle de la venta</h1>
@@ -8,7 +15,7 @@
         Fecha de la venta: <%= @FechaVenta.strftime('%d-%m-%Y  %H:%M:%S')%>
       </h3>
       <div class="list-group-item-text">
-        <b>Vendedor: </b><%=User.find(@worker[0].id_usuario).nombre_trabajador %> <%=User.find(@worker[0].id_usuario).apellidos_trabajador %></li>
+        <b>Vendedor: </b><%=User.find(@worker[0].id_usuario).nombre_trabajador.titleize %> <%=User.find(@worker[0].id_usuario).apellidos_trabajador.titleize %></li>
       </div>
 
     </div>
@@ -20,7 +27,7 @@
         <p class="list-group-item-text">
         <ul>
           <li>
-            <b>Producto <%=@Productos.find(venta.id_producto).nombre_producto %> </b>
+            <b>Producto <%=@Productos.find(venta.id_producto).nombre_producto.capitalize %> </b>
           </li>
           <li>
             <b>Cantidad: <%=venta.cantidad  %></b>

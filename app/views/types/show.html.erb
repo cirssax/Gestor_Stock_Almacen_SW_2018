@@ -1,6 +1,13 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="/types">Listado de Tipos</a></li>
+    <li>Ficha del Tipo</li>
+  </ol>
+</div>
+
 <div class="panel panel-info bootcards-file">
   <div class="panel-heading">
-    <h1 class="panel-title">Ficha de tipo: <%=@tipo.descrip_tipo %></h1>
+    <h1 class="panel-title">Ficha de tipo: <%=@tipo.descrip_tipo.capitalize %></h1>
   </div>
   <div class="list-group">
 
@@ -22,7 +29,7 @@
         <ul>
           <%if @productos.length > 0 %>
             <% @productos.each do |producto| %>
-              <li><%=producto.nombre_producto %></li>
+              <li><%=producto.nombre_producto.capitalize %></li>
             <%end %>
           <%else %>
             <li>No existen productos de esta categoría</li>

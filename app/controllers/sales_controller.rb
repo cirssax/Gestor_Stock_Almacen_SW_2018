@@ -24,6 +24,7 @@ class SalesController < ApplicationController
 
   def create
     @venta = Sale.new(sale_params)
+
     @venta.id_usuario= current_user.id
     fecha_actual = DateTime.now
     @venta.fecha_venta = fecha_actual

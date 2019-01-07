@@ -1,5 +1,12 @@
 <h3>Edicion de usuario</h3>
 
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="/users">Listado de Usuarios</a></li>
+    <li>Edicion de usuario</li>
+  </ol>
+</div>
+
 <%if current_user.id_rol == 1 %>
   <%= render 'form' %>
 <%end %>

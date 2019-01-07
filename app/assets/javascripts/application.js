@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require jquery_nested_form
+//= require datatables
 //= require_tree .
 $(document).on('turbolinks:load', function() {
 
@@ -31,5 +32,29 @@ $(document).on('turbolinks:load', function() {
         $('.fields').append($(this).data('fields').replace(regexp, time));
         return event.preventDefault();
     });
+
+    $("table[role='datatable']").each(function(){
+        $(this).DataTable({
+            "bStateSave": true,
+            "processing": true,
+            "language":
+                {
+                    "emptyTable": "No existen campos para Feriados",
+                    "zeroRecords": "No existen registros que cumplan el criterio de búsqueda",
+                    "processing": "Buscando registros...",
+                    "search": "Buscar:",
+                    "lengthMenu": "Mostrar _MENU_ registros",
+                    "info": "Registros del _START_ al _END_ de un total de _TOTAL_",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+        });
+    });
+
+
 
 });

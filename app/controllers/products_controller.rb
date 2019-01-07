@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     @producto = Product.new(producto_params)
 
     if @producto.save
-      flash[:succes] = "Almacenamiento correcto"
+      flash[:success] = "Almacenamiento correcto"
       redirect_to new_product_path
     else
       render :new

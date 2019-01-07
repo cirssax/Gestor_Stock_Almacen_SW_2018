@@ -1,5 +1,12 @@
 <h3>Añadir Producto</h3>
 
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="/products">Listado de Productos</a></li>
+    <li>Nuevo Producto</li>
+  </ol>
+</div>
+
 <%if current_user.id_rol == 1 %>
   <%= render 'form' %>
 <%end %>

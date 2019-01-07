@@ -1,6 +1,13 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="/users">Listado de Usuarios</a></li>
+    <li>Ficha de Usuario</li>
+  </ol>
+</div>
+
 <div class="panel panel-info bootcards-file">
   <div class="panel-heading">
-    <h1 class="panel-title">Usuario: <%=@user.nombre_trabajador%></h1>
+    <h1 class="panel-title">Usuario: <%=@user.nombre_trabajador.capitalize%></h1>
   </div>
   <div class="list-group">
     <div class="list-group-item" style="height: 130px; padding-left: 0px !important;">
@@ -8,7 +15,7 @@
         Ficha
       </h3>
       <p class="list-group-item-text">
-        <b>Nombre completo: </b><%=@Lista[0].nombre %><br>
+        <b>Nombre completo: </b><%=@Lista[0].nombre.capitalize %><br>
         <b>Cantidad de ventas: </b><%=@Lista[0].ventas %><br>
         <b>Monto vendido: </b>$<%=@Lista[0].cantidad_vendido %>
       </p>
@@ -22,10 +29,10 @@
           <p>
           <ul>
             <li>
-              <b>Rol: </b><%=Role.find(@user.id_rol).descrip_rol %>
+              <b>Rol: </b><%=Role.find(@user.id_rol).descrip_rol.capitalize %>
             </li>
             <li>
-              <b>Estado: </b><%=State.find(@user.id_estado).descrip_estado  %>
+              <b>Estado: </b><%=State.find(@user.id_estado).descrip_estado.capitalize  %>
             </li>
             <li>
               <b>Email/Login: </b><%=@user.email  %>
@@ -44,7 +51,7 @@
               <b>Fono: </b><%=@user.fono%>
             </li>
             <li>
-              <b>Domicilio: </b><%=@user.domicilio%>
+              <b>Domicilio: </b><%=@user.domicilio.capitalize%>
             </li>
             <li>
               <b>Fecha de Creación: </b><%=@user.created_at.strftime('%d-%m-%Y  %H:%M:%S')%>

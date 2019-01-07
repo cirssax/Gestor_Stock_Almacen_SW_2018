@@ -1,6 +1,13 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li><a href="/products">Listado de Productos</a></li>
+    <li>Ficha del Producto</li>
+  </ol>
+</div>
+
 <div class="panel panel-info bootcards-file">
   <div class="panel-heading">
-    <h1 class="panel-title">Ficha del producto <%=@producto.nombre_producto %></h1>
+    <h1 class="panel-title">Ficha del producto: <%=@producto.nombre_producto.capitalize %></h1>
   </div>
   <div class="list-group">
 
@@ -8,10 +15,10 @@
 
 
       <h3 class="list-group-item-text">
-        <%=@producto.nombre_producto %>
+        <%=@producto.nombre_producto.capitalize %>
       </h3>
       <div class="list-group-item-text">
-        <b>Categoria: </b><%=Type.find(@producto.id_tipo).descrip_tipo %>
+        <b>Categoria: </b><%=Type.find(@producto.id_tipo).descrip_tipo.capitalize %>
       </div>
 
     </div>
