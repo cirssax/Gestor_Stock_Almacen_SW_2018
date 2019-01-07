@@ -19,22 +19,43 @@ class HomeController < ApplicationController
     #Alertas
     @Productos  = Product.select("products.id").where("products.stock < 5")
     @ProductosStockBajo = @Productos.length
-    #Tablas de últimas ventas
-    @UltimasVentas = Sale.last(5)
-    #Genero un arreglo de cada venta
-    @ListaVenta = []
-    @UltimasVentas.each do |venta|
-      #Obtencion del producto y la cantidad
-      @Productos = Cart.select("id_producto, cantidad").where("sale_id = ?", venta.id.to_s)
-      monto = 0
-      #Se calcula el monto total vendido
-      @Productos.each do |costo|
-        #Obtencion del costo unitario del producto
-        @CostoUnitario = Product.select("precio").where("id = ?", costo.id_producto)
-        monto = monto + (costo.cantidad.to_i * @CostoUnitario[0].precio.to_i)
+
+    if current_user.id_rol == 1
+      #Tablas de últimas ventas
+      @UltimasVentas = Sale.last(10)
+      #Genero un arreglo de cada venta
+      @ListaVenta = []
+      @UltimasVentas.each do |venta|
+        #Obtencion del producto y la cantidad
+        @Productos = Cart.select("id_producto, cantidad").where("sale_id = ?", venta.id.to_s)
+        monto = 0
+        #Se calcula el monto total vendido
+        @Productos.each do |costo|
+          #Obtencion del costo unitario del producto
+          @CostoUnitario = Product.select("precio").where("id = ?", costo.id_producto)
+          monto = monto + (costo.cantidad.to_i * @CostoUnitario[0].precio.to_i)
+        end
+        l1 = Lista.new(monto, venta.id_usuario, venta.fecha_venta)
+        @ListaVenta.push(l1)
       end
-      l1 = Lista.new(monto, venta.id_usuario, venta.fecha_venta)
-      @ListaVenta.push(l1)
+    else
+      #Tablas de últimas ventas
+      @UltimasVentas = Sale.where("id_usuario = ?", current_user.id).last(5)
+      #Genero un arreglo de cada venta
+      @ListaVenta = []
+      @UltimasVentas.each do |venta|
+        #Obtencion del producto y la cantidad
+        @Productos = Cart.select("id_producto, cantidad").where("sale_id = ?", venta.id.to_s)
+        monto = 0
+        #Se calcula el monto total vendido
+        @Productos.each do |costo|
+          #Obtencion del costo unitario del producto
+          @CostoUnitario = Product.select("precio").where("id = ?", costo.id_producto)
+          monto = monto + (costo.cantidad.to_i * @CostoUnitario[0].precio.to_i)
+        end
+        l1 = Lista.new(monto, venta.id_usuario, venta.fecha_venta)
+        @ListaVenta.push(l1)
+      end
     end
 
 

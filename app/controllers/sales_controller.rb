@@ -24,15 +24,32 @@ class SalesController < ApplicationController
 
   def create
     @venta = Sale.new(sale_params)
-      @venta.id_usuario= current_user.id
-      @venta.fecha_venta = DateTime.now
-      if @venta.save
-        flash[:success] = "Se ha realizado la venta"
-        redirect_to sales_index_path
-      else
-        flash[:danger] = "Ha ocurrido un error"
-        render new_sale_path
+    @venta.id_usuario= current_user.id
+    fecha_actual = DateTime.now
+    @venta.fecha_venta = fecha_actual
+    if @venta.save
+      #Venta correctamente hecha
+      # Captura del id de la venta recien hecha
+      @venta_recien_hecha = Sale.select("id").where("fecha_venta = ?", fecha_actual)
+      #Captura de los productos asociados a la venta recien hecha
+      @productos_comprados = Cart.select("id_producto, cantidad").where("sale_id = ?", @venta_recien_hecha[0].id)
+      #Actualizacion de stock para cada producto seleccionado
+      @productos_comprados.each do |producto|
+        #Captura del stock actual del producto
+        @datos_productos = Product.select("stock, nombre_producto").where("id = ?", producto.id_producto)
+        nuevo_stock = @datos_productos[0].stock.to_i - producto.cantidad
+        product = Product.find(producto.id_producto.to_i)
+        product.update_attribute :stock, nuevo_stock.to_s
+        if nuevo_stock < 5
+          flash[:danger] = "Producto: "+@datos_productos[0].nombre_producto.to_s+" tiene stock bajo: "+nuevo_stock.to_s
+        end
       end
+      flash[:success] = "Se ha realizado la venta"
+      redirect_to new_sale_path
+    else
+      flash[:danger] = "Ha ocurrido un error"
+      render new_sale_path
+    end
   end
 
   private
