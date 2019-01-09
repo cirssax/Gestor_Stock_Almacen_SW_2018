@@ -2,7 +2,28 @@ es:
   activerecord:
     attributes:
       product:
-        id_tipo: 'Tipo de Producto'
-        precio: 'Costo'
-        stock: 'Stock'
-        nombre_producto: 'Nombre del Producto'
+        id_tipo: 'Tipo de Productos:'
+        precio: 'Costo:'
+        stock: 'Stock:'
+        nombre_producto: 'Nombre del Producto:'
+      cart:
+        id_producto: 'Producto: '
+        cantidad: 'Cantidad: '
+      role:
+        descrip_rol: 'Descripcion del Rol: '
+      sale:
+        id_usuario: 'Usuario: '
+        fecha_venta: 'Fecha de la Venta: '
+      satate:
+        descrip_estado: 'Descripcion del Estado: '
+      type:
+        descrip_tipo: 'Descripción del tipo de producto: '
+      user:
+        email: 'Correo electronico: '
+        id_rol: 'Rol :'
+        id_estado: 'Estado: '
+        nombre_trabajador: 'Nombre: '
+        apellidos_trabajador: 'Apellidos: '
+        fono: 'Teléfono: '
+        domicilio: 'Domicilio: '
+        rut: 'Rut: '

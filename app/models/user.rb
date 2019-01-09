@@ -17,7 +17,7 @@ class User < ApplicationRecord
   VALID_NAME_REGEX = /(?=^.{2,50}$)[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)?/
   VALID_CORREO_REGEX = /\A\S+@.+\.\S+\z/
   #Validaciones para el rut
-  validates :rut, rut:{message: "Rut invalido"}, uniqueness: {message:"Rut ya existente"}, presence: {message: "Ingrese rut"}
+  validates :rut, rut:{message: "invalido"}, uniqueness: {message:"ya existente"}, presence: {message: "Ingrese rut"}
   #Valicaciones para el domicilio
   validates :domicilio, length: {in: 2..100, :message => "Largo inadecuado de domicilio"}
   #Validacines para el fono,uniqueness: {message:"Rut ya existente"}
@@ -31,7 +31,7 @@ class User < ApplicationRecord
   #Validaciones para el rol
   validates :id_rol, presence: {message: "Debe seleccionar un rol"}
   #Validacion del correo
-  validates :email, format:  {with: VALID_CORREO_REGEX, :message => "Forma invalido de correo"}, uniqueness: {message: "Ya existe un usuario asignado a ese correo"}
+  validates :email, format:  {with: VALID_CORREO_REGEX, :message => "Formato invalido de correo"}, uniqueness: {message: "Ya existe un usuario asignado a ese correo"}
 
 
   private

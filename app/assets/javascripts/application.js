@@ -59,6 +59,44 @@ function validarSiNumero(numero){
 
 }
 
+function validaRut(campo){
+    if ( campo.length == 0 ){ return false; }
+    if ( campo.length < 8 ){ return false; }
+
+    campo = campo.replace('-','')
+    campo = campo.replace(/\./g,'')
+
+    var suma = 0;
+    var caracteres = "1234567890kK";
+    var contador = 0;
+    for (var i=0; i < campo.length; i++){
+        u = campo.substring(i, i + 1);
+        if (caracteres.indexOf(u) != -1)
+            contador ++;
+    }
+    if ( contador==0 ) { return false }
+
+    var rut = campo.substring(0,campo.length-1)
+    var drut = campo.substring( campo.length-1 )
+    var dvr = '0';
+    var mul = 2;
+
+    for (i= rut.length -1 ; i >= 0; i--) {
+        suma = suma + rut.charAt(i) * mul
+        if (mul == 7) 	mul = 2
+        else	mul++
+    }
+    res = suma % 11
+    if (res==1)		dvr = 'k'
+    else if (res==0) dvr = '0'
+    else {
+        dvi = 11-res
+        dvr = dvi + ""
+    }
+    if ( dvr != drut.toLowerCase() ) { return false; }
+    else { return true; }
+}
+
 $(document).on('turbolinks:load', function() {
 
     $('form').on('click', '.remove_record', function(event) {
@@ -173,14 +211,30 @@ $(document).on('turbolinks:load', function() {
 
     $("#Rut").focusout(function(){
         var campo = $("#Rut").val().trim();
+        campo = campo.replace(".","");
         if(campo.length == 0){
             $("#Rut").attr("class", "form-control is-invalid");
-            $("#ErrorRut").html("Ingrese Rut");
+            $("#ErrorRut").html("Ingrese el Rut");
             $("#Rut").val("");
         }
         else{
-            $("#Rut").attr("class", "form-control");
-            $("#ErrorRut").html("");
+            if(campo.indexOf('-')==-1){
+                $("#Rut").attr("class", "form-control is-invalid");
+                $("#ErrorRut").html("Ingrese guión");
+                $("#Rut").val("");
+            }
+            else{
+                if(!validaRut(campo)){
+                    $("#Rut").attr("class", "form-control is-invalid");
+                    $("#ErrorRut").html("Formato invalido de Rut");
+                    $("#Rut").val("");
+                }
+                else{
+                    $("#Rut").attr("class", "form-control");
+                    $("#ErrorRut").html("");
+                }
+            }
+
         }
     });
 
@@ -277,7 +331,5 @@ $(document).on('turbolinks:load', function() {
             $("#ErrorStock").html("");
         }
     });
-
-
 
 });
