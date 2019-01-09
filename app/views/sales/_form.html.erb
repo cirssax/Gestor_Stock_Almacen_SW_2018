@@ -1,3 +1,5 @@
+
+
 <% if @venta.errors.any? %>
   <div id="error_explanation">
     <h4>
@@ -52,7 +54,7 @@
             <%= carro.text_field :cantidad, class: "form-control", type: 'number', placeholder: "Cantidad del Producto" %>
           </td>
           <td>
-            <%= carro.link_to_remove "Eliminar", :class=> 'btn btn-danger btn-sm' %>
+            <%= carro.link_to_remove "Eliminar", :class=> 'btn btn-danger btn-sm borrar'%>
           </td>
         </tr>
         <br>
@@ -60,17 +62,16 @@
       </tbody>
     </table>
     <p>
-      <%= f.link_to_add "Agregar Producto", :carts , :class=> 'btn btn-default btn-sm', "data-target" => "#cart"%>
+      <%= f.link_to_add "Agregar Producto", :carts , :class=> 'btn btn-default btn-sm', "data-target" => "#cart", id: "AgregarProd"%>
     </p>
     <br>
     <div class="row">
       <div class="form-actions">
-        <%= f.submit  "Enviar" , :class=> 'btn btn-primary'%>
-        <%= link_to 'Cancelar', sales_index_path ,:class=> 'btn btn-danger' %>
+        <%= f.submit  "Enviar" , :class=> 'btn btn-primary', id: "Enviar", disabled: "disabled"%>
+        <%= link_to 'Cancelar', sales_index_path ,:class=> 'btn btn-danger'%>
+
       </div>
     </div>
-
-
   </div>
 
 <% end %>

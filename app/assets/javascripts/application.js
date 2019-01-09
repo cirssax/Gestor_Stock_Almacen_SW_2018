@@ -98,11 +98,33 @@ function validaRut(campo){
 }
 
 $(document).on('turbolinks:load', function() {
-
+    $("#Enviar").attr("disabled", true);
     $('form').on('click', '.remove_record', function(event) {
         $(this).prev('input[type=hidden]').val('1');
-        $(this).closest('tr').hide();
+        $(this).closest('tr').remove();
+        console.log("Gola");
         return event.preventDefault();
+    });
+
+    $(document).on('click', '.borrar', function (event) {
+        $(this).closest('tr').remove();
+        var nFilas = $("#cart tr").length;
+        if(nFilas == 1){
+            $("#Enviar").attr("disabled", true);
+        }
+        else{
+            $("#Enviar").attr("disabled", false)
+        }
+    });
+
+    $("#AgregarProd").click(function(){
+
+        $("#Enviar").attr("disabled", false);
+    });
+
+    $("#Contador").click(function(){
+        var nFilas = $("#cart tr").length;
+        console.log(nFilas);
     });
 
     $('form').on('click', '.add_fields', function(event) {
@@ -331,5 +353,6 @@ $(document).on('turbolinks:load', function() {
             $("#ErrorStock").html("");
         }
     });
+
 
 });
