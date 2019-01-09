@@ -22,7 +22,7 @@ class HomeController < ApplicationController
 
     if current_user.id_rol == 1
       #Tablas de últimas ventas
-      @UltimasVentas = Sale.last(10)
+      @UltimasVentas = Sale.order('fecha_venta DESC').first(10)
       #Genero un arreglo de cada venta
       @ListaVenta = []
       @UltimasVentas.each do |venta|
@@ -40,7 +40,7 @@ class HomeController < ApplicationController
       end
     else
       #Tablas de últimas ventas
-      @UltimasVentas = Sale.where("id_usuario = ?", current_user.id).last(5)
+      @UltimasVentas = Sale.where("id_usuario = ?", current_user.id).order('fecha_venta DESC').first(10)
       #Genero un arreglo de cada venta
       @ListaVenta = []
       @UltimasVentas.each do |venta|

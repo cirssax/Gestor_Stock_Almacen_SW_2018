@@ -31,13 +31,10 @@
 <%=form_for @types do|f| %>
   <form class="form-horizontal">
     <div class="row">
-      <div class="card-body">
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <%= f.label 'Descripcion de Tipo', :class => 'form-label' %><br>
-            <%= f.text_field :descrip_tipo,class: "form-control" %>
-          </div>
-        </div>
+      <div class="form-group col-md-12">
+        <%= f.label 'Descripcion de Tipo', :class => 'form-label' %><br>
+        <%= f.text_field :descrip_tipo,class: "form-control", placeholder: "Tipo de Producto", id: "Tipo"%>
+        <small id="ErrorTipo" class="invalid-feedback"></small>
       </div>
     </div>
     <div class="form-actions">

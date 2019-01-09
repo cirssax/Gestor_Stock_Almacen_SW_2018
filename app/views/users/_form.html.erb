@@ -38,69 +38,82 @@
 
 
 <%=form_for @user do|f|%>
-    <form class="form-horizontal">
-        <div class="card-body">
-          <div class="form-row">
+    <form class="">
+
+          <div class="row">
             <div class="form-group col-md-6">
               <%= f.label :'nombre usuario', class: 'form-label' %><br>
-              <%= f.text_field :nombre_trabajador,class: "form-control", type: "text"%>
+              <%= f.text_field :nombre_trabajador,class: "form-control", type: "text", placeholder: "Nombre(s)", id: "Nombre"%>
+              <small id="ErrorNombre" class="invalid-feedback"></small>
             </div>
             <div class="form-group col-md-6">
               <%= f.label :'apellido usuario' %><br>
-              <%= f.text_field :apellidos_trabajador,class: "form-control"  %>
+              <%= f.text_field :apellidos_trabajador,class: "form-control", placeholder: "Apellido(s)", id: "Apellidos"%>
+              <small id="ErrorApellido" class="invalid-feedback"></small>
             </div>
           </div>
-          <div class="form-row">
+
+          <div class="row">
             <div class="form-group col-md-6">
               <%= f.label :'rut'%>
-              <%= f.text_field :rut, class: "form-control", placeholder: "Rut"%>
+              <%= f.text_field :rut, class: "form-control", placeholder: "XXXXXXXX-X", id: "Rut"%>
+              <small id="ErrorRut" class="invalid-feedback"></small>
             </div>
             <div class="form-group col-md-6">
               <%= f.label :'fono', class: 'form-label' %><br>
-              <%= f.text_field :fono,class: "form-control"  %>
+              <%= f.text_field :fono,class: "form-control", placeholder: "XXXXXXXXX", id: "Fono"%>
+              <small id="ErrorFono" class="invalid-feedback"></small>
             </div>
           </div>
-          <div class="form-row">
+
+          <div class="row">
             <div class="form-group col-md-12">
               <%= f.label :'domicilio', class: 'form-label' %><br>
-              <%= f.text_field :domicilio,class: "form-control"  %>
+              <%= f.text_field :domicilio,class: "form-control", placeholder: "Domicilio", id: "Domicilio"%>
+              <small id="ErrorDomicilio" class="invalid-feedback"></small>
             </div>
           </div>
-          <div class="form-row">
+
+          <div class="row">
             <div class="form-group col-md-6">
               <%= f.label  :'Rol', class: 'form-label' %>
-              <%= f.collection_select :id_rol, Role.all, :id, :descrip_rol,  {:include_blank => true}, {:class => 'form-control btn btn-secondary dropdown-toggle'} %>
+              <%= f.collection_select :id_rol, Role.all, :id, :descrip_rol,  {:include_blank => true}, {:class => 'form-control btn btn-secondary dropdown-toggle', id: "Rol"}%>
+              <small id="ErrorRol" class="invalid-feedback"></small>
             </div>
             <div class="form-group col-md-6">
               <%= f.label :'Estado' , class: 'form-label'%>
-              <%= f.collection_select :id_estado, State.all, :id, :descrip_estado, {:include_blank => true}, {:class => 'form-control btn btn-secondary dropdown-toggle'} %>
+              <%= f.collection_select :id_estado, State.all, :id, :descrip_estado, {:include_blank => true}, {:class => 'form-control btn btn-secondary dropdown-toggle', id: "Estado"} %>
+              <small id="ErrorEstado" class="invalid-feedback"></small>
             </div>
           </div>
+
           <div class="form-row">
             <div class="form-group col-md-12">
               <%= f.label :email %><br />
-              <%= f.email_field :email, autofocus: true,class: "form-control" %>
+              <%= f.email_field :email, autofocus: true,class: "form-control", placeholder: "correo@example.com", id: "Correo"%>
+              <small id="ErrorCorreo" class="invalid-feedback"></small>
             </div>
           </div>
-          <div class="form-row">
+          <div class="row">
             <div class="form-group col-md-6">
               <%= f.label :password %>
               <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %> characters minimum)</em>
               <% end %><br />
-              <%= f.password_field :password,class: "form-control" %>
+              <%= f.password_field :password,class: "form-control", placeholder: "Contraseña"%>
             </div>
             <div class="form-group col-md-6">
               <%= f.label :Confirme_su_contraseña %><br />
-              <%= f.password_field :password_confirmation,class: "form-control"%>
+              <%= f.password_field :password_confirmation,class: "form-control", placeholder: "Confirmar Contraseña"%>
             </div>
           </div>
+
           <div class="row">
             <div class="form-actions">
               <%= f.submit 'Enviar', :class=> 'btn btn-primary' %>
               <%= link_to 'Cancelar', users_path,:class=> 'btn btn-danger' %>
             </div>
           </div>
-        </div>
+
     </form>
 <% end %>

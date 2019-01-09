@@ -3,9 +3,9 @@ class SalesController < ApplicationController
 
   def index
     if current_user.id_rol == 1
-      @Venta = Sale.select("id, id_usuario, fecha_venta")
+      @Venta = Sale.select("id, id_usuario, fecha_venta").order('fecha_venta DESC')
     else
-      @Venta = Sale.select("id, id_usuario, fecha_venta").where("id_usuario = ?", current_user.id)
+      @Venta = Sale.select("id, id_usuario, fecha_venta").where("id_usuario = ?", current_user.id).order('fecha_venta DESC')
     end
   end
 

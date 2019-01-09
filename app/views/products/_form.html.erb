@@ -31,29 +31,34 @@
 <%=form_for @producto do|f| %>
   <form class="form-horizontal">
     <div class="card-body">
-      <div class="form-row">
+      <div class="row">
         <div class="form-group col-md-6">
           <%= f.label :'Nombre producto', class: 'form-label' %><br>
-          <%= f.text_field :nombre_producto,class: "form-control" %>
+          <%= f.text_field :nombre_producto,class: "form-control", placeholder: "Nombre", id: "NombreProd"%>
+          <small id="ErrorNombreProd" class="invalid-feedback"></small>
         </div>
         <div class="form-group col-md-6">
           <%= f.label :'Precio', class: 'form-label' %><br>
-          <%= f.text_field :precio ,class: "form-control", type: 'number'%>
+          <%= f.text_field :precio ,class: "form-control", type: 'number', placeholder: "Precio", id: "Precio"%>
+          <small id="ErrorPrecio" class="invalid-feedback"></small>
         </div>
       </div>
-      <div class="form-row">
+      <div class="row">
         <div class="form-group col-md-6">
           <%= f.label :'Stock', class: 'form-label' %><br>
-          <%= f.text_field :stock,class: "form-control", type: 'number' %>
+          <%= f.text_field :stock,class: "form-control", type: 'number', placeholder: "Stock", id: "Stock"%>
+          <small id="ErrorStock" class="invalid-feedback"></small>
         </div>
         <div class="form-group col-md-6">
           <%= f.label :'Tipo' %><br>
           <%= f.collection_select(:id_tipo, Type.all, :id, :descrip_tipo, {:include_blank => true}, {:class => 'form-control'}) %>
         </div>
       </div>
-      <div class="form-row">
-        <%= f.submit 'Guardar', :class=> 'btn btn-primary' %>
-        <%= link_to 'Cancelar', products_index_path,:class=> 'btn btn-danger' %>
+      <div class="row">
+        <div class="form-actions">
+          <%= f.submit 'Guardar', :class=> 'btn btn-primary' %>
+          <%= link_to 'Cancelar', products_index_path,:class=> 'btn btn-danger' %>
+        </div>
       </div>
     </div>
   </form>
