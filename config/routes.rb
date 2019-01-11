@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   #Rutas de las vetnas
   get 'sales/index'
 
-
   resources :sales
 
   get '/sales/:sale_id/', to: 'sales#show', as: 'descrip_sale'

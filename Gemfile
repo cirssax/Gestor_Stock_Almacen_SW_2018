@@ -36,6 +36,10 @@ gem 'cancancan', '~> 2.0'
 
 gem "nested_form"
 
+gem "wicked_pdf"
+
+gem "wkhtmltopdf-binary"
+
 gem 'rails-assets-jquery', source: 'https://rails-assets.org'
 gem 'rails-assets-datatables', source: 'https://rails-assets.org'
 

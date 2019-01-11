@@ -2,6 +2,7 @@ class SalesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+
     if current_user.id_rol == 1
       @Venta = Sale.select("id, id_usuario, fecha_venta").order('fecha_venta DESC')
     else
@@ -10,12 +11,26 @@ class SalesController < ApplicationController
   end
 
   def show
-    id_venta = params[:id]
-    @worker = Sale.select("id_usuario, fecha_venta").where("id = ?",id_venta)
+    @id_venta = params[:id]
+    @worker = Sale.select("id_usuario, fecha_venta").where("id = ?",@id_venta)
     @FechaVenta = @worker[0].fecha_venta
-    @descripcionVenta = Cart.select("id_producto, cantidad").where("sale_id = ?", id_venta)
+    @descripcionVenta = Cart.select("id_producto, cantidad").where("sale_id = ?", @id_venta)
     @Productos = Product.select("id, precio, nombre_producto")
     @CostoTotal = 0
+    respond_to do |format|
+      format.html
+      format.pdf {render template: 'sales/boleta', pdf: 'Boleta_de_Venta'}
+    end
+  end
+
+  def filter
+
+    if current_user.id_rol == 1
+      @Venta = Sale.select("id, id_usuario, fecha_venta").where('fecha_venta < ? AND fecha_venta > ?', @Filtro.fecha_termino, @Filtro.fecha_inicio).order('fecha_venta DESC')
+      render sales_index_path
+    else
+
+    end
   end
 
   def new
@@ -54,8 +69,23 @@ class SalesController < ApplicationController
   end
 
   private
+
+  class Filter
+    attr_accessor :fecha_inicio
+    attr_accessor :fecha_termino
+
+    def initialize(fecha_inicio, fecha_termino)
+      @fecha_inicio = fecha_inicio
+      @fecha_termino = fecha_termino
+    end
+  end
+
   def sale_params
     params.require(:sale).permit(:fecha_venta, :id_usuario, carts_attributes: [:id ,:id_producto, :cantidad])
+  end
+
+  def filtro_params
+    params.require(:filter).permit(:fecha_inicio, :fecha_termino)
   end
 
 end

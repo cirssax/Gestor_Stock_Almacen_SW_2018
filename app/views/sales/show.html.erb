@@ -7,15 +7,17 @@
 
 <div class="panel panel-info bootcards-file">
   <div class="panel-heading">
-    <h1 class="panel-title">Detalle de la venta</h1>
+    <h3 class="">Detalle de la venta</h3>
   </div>
   <div class="list-group">
     <div class="list-group-item" style="height: 130px; padding-left: 0px !important;">
-      <h3 class="list-group-item-text">
-        Fecha de la venta: <%= @FechaVenta.strftime('%d-%m-%Y  %H:%M:%S')%>
-      </h3>
+      <h4 class="list-group-item-text">
+        <b>Fecha de la venta: <%= @FechaVenta.strftime('%d-%m-%Y')%><br>
+          Hora de la venta: <%=@FechaVenta.strftime('%H:%M:%S') %></b>
+      </h4>
       <div class="list-group-item-text">
-        <b>Vendedor: </b><%=User.find(@worker[0].id_usuario).nombre_trabajador.titleize %> <%=User.find(@worker[0].id_usuario).apellidos_trabajador.titleize %></li>
+        <b>Vendedor(a): </b><%=User.find(@worker[0].id_usuario).nombre_trabajador.titleize %> <%=User.find(@worker[0].id_usuario).apellidos_trabajador.titleize %></li><br>
+        <b>Identificación de venta: </b><%=@id_venta %>
       </div>
 
     </div>
@@ -48,5 +50,6 @@
 <br>
 
 <div>
+  <a href="<%=params[:id]%>.pdf" class="btn btn-success" target="_blank">Descargar</a>
   <%=link_to 'Volver', sales_index_path, :class => 'btn btn-primary' %>
 </div>

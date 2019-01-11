@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Boleta</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="">
+      <h3 class="">Detalle de la venta</h3>
+    </div>
+    <div class="">
+      <div class="">
+        <h4 class="">
+          <b>Fecha de la venta: <%= @FechaVenta.strftime('%d-%m-%Y')%><br>
+            Hora de la venta: <%=@FechaVenta.strftime('%H:%M:%S') %></b>
+        </h4>
+        <div class="">
+          <b>Vendedor(a): </b><%=User.find(@worker[0].id_usuario).nombre_trabajador.titleize %> <%=User.find(@worker[0].id_usuario).apellidos_trabajador.titleize %></li><br>
+          <b>Identificación de venta: </b><%=@id_venta %>
+        </div>
+
+      </div>
+      <div class="">
+        <p class=""><strong>Detalle de la compra</strong></p>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <td>Producto</td>
+            <td>Cantidad</td>
+            <td>Sub Total</td>
+          </tr>
+        </thead>
+        <tbody>
+          <%@descripcionVenta.each do |venta| %>
+            <tr>
+              <td><%=@Productos.find(venta.id_producto).nombre_producto.capitalize %></td>
+              <td><%=venta.cantidad  %></td>
+              <td>$<%=@Productos.find(venta.id_producto).precio * venta.cantidad %></td>
+              <% @CostoTotal = @CostoTotal + @Productos.find(venta.id_producto).precio * venta.cantidad %>
+            </tr>
+          <%end %>
+        </tbody>
+      </table>
+      <div class="">
+        <label class="">Venta total: $<%=@CostoTotal %></label>
+      </div>
+    </div>
+  </div>
+</body>
