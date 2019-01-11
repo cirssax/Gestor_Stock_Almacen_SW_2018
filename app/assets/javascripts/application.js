@@ -140,7 +140,7 @@ $(document).on('turbolinks:load', function() {
             "processing": true,
             "language":
                 {
-                    "emptyTable": "No existen campos para Feriados",
+                    "emptyTable": "No existen datos para esos filtros",
                     "zeroRecords": "No existen registros que cumplan el criterio de búsqueda",
                     "processing": "Buscando registros...",
                     "search": "Buscar:",
@@ -162,7 +162,7 @@ $(document).on('turbolinks:load', function() {
             "processing": true,
             "language":
                 {
-                    "emptyTable": "No existen campos para Feriados",
+                    "emptyTable": "No existen datos para esos filtros",
                     "zeroRecords": "No existen registros que cumplan el criterio de búsqueda",
                     "processing": "Buscando registros...",
                     "search": "Buscar:",
@@ -353,5 +353,94 @@ $(document).on('turbolinks:load', function() {
         }
     });
 
+    //Funcion para el filtro de fecha
+    var ValidFechaInicio = false;
+    var ValidFechaTermino = false;
+
+    function ActivarBtn(){
+        console.log(ValidFechaInicio +" "+ ValidFechaTermino);
+        if(ValidFechaInicio && ValidFechaTermino){
+            $('#Filtrar').prop('disabled', false);
+        }
+        else{
+            $('#Filtrar').prop('disabled', true);
+        }
+    }
+    $("#FechaInicio").focusout(function () {//Funcion para controlar la fecha de inicio
+        var FechaInicio = $("#FechaInicio").val().trim();//Captura del campo
+        if (FechaInicio == "") {//Verificar si el campo esta vacio
+            $("#FechaInicio").attr("class", "form-control is-invalid");
+            $("#ErrorFechaInicio").html("Debe ingresar fecha de inicio");
+            $("#FechaInicio").val("");
+            ValidFechaInicio = false;
+        }
+        else {//Campo distinto de vacio
+            var FechaTermino = $("#FechaTermino").val().trim();
+            var FormatoFechaI = new Date(FechaInicio);
+            var FormatoFechaT = new Date(FechaTermino);
+            if(FormatoFechaT.length == 0 && FormatoFechaT == null){
+                ValidFechaTermino = false;
+                $("#FechaTermino").attr("class", "form-control is-invalid");
+                $("#ErrorFechaTermino").html("Debe ingesar fecha de termino");
+                ValidFechaTermino = false;
+            }
+            else{
+                if (FormatoFechaI > FormatoFechaT){
+                    $("#FechaInicio").attr("class", "form-control is-invalid");
+                    $("#ErrorFechaInicio").html("Fecha de inicio invalida");
+                    $("#FechaInicio").val("");
+                    ValidFechaInicio = false;
+                }
+                else{
+                    $("#FechaInicio").attr("class", "form-control");
+                    $("#ErrorFechaInicio").html("");
+                    ValidFechaInicio = true;
+                    ValidFechaTermino = true;
+                }
+            }
+        }
+        ActivarBtn();
+    });
+
+    $("#FechaTermino").focusout(function () {//Validacion de la fecha de termino
+        var FechaTermino = $("#FechaTermino").val().trim();//Captura del campo
+        if (FechaTermino == "") {//Campo vacio
+            $("#FechaTermino").attr("class", "form-control is-invalid");
+            $("#ErrorFechaTermino").html("Debe ingesar fecha de termino");
+            $("#FechaTermino").val("");
+            ValidFechaTermino = false;
+        }
+        else {//Campo esta lleno
+            var FechaInicio = $("#FechaInicio").val().trim();
+            var FormatoFechaT = new Date(FechaTermino);
+            var FormatoFechaI = new Date(FechaInicio);
+            if(FormatoFechaI.length == 0 && FormatoFechaI == null){
+                $("#FechaInicio").attr("class", "form-control is-invalid");
+                $("#ErrorFechaInicio").html("Debe ingresar fecha de inicio");
+                ValidFechaInicio = false;
+            }
+            else{
+                if(FechaTermino < FechaInicio){
+                    $("#FechaTermino").attr("class", "form-control is-invalid");
+                    $("#ErrorFechaTermino").html("Fecha de termino invalida");
+                    $("#FechaTermino").val("");
+                    ValidFechaTermino = false;
+                }
+                else{
+                    $("#FechaTermino").attr("class", "form-control");
+                    $("#ErrorFechaTermino").html("");
+                    ValidFechaTermino = true;
+                    ValidFechaInicio = true;
+                }
+            }
+        }
+        ActivarBtn();
+    });
+
+    $('#Boton').click(function () {
+        $('#Filtrar').prop('disabled', false);
+        ValidFechaInicio = false;
+        ValidFechaTermino = false;
+    });
 
 });

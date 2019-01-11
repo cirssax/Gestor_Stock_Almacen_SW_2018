@@ -1,26 +1,32 @@
 <h2>Lista de Ventas</h2>
-
-
-  <div class="form-group">
-    <h4>Filtro</h4>
+<br>
+<h3>Filtrar por Fecha</h3>
+<div class="form-group">
+  <%= form_tag sales_index_path, method: :get do %>
     <div class="row">
-      <div class="from-group col-md-6">
-        <label class="form-label">Fecha Inicio</label>
-        <input class="form-control" type="date">
+      <div class="form-group col-md-6">
+        <label class="text-muted">Fecha de Inicio</label>
+        <%= text_field_tag 'search[date_from]', @search.date_from, class: "form-control", type: 'date', id: 'FechaInicio' %>
+        <small id="ErrorFechaInicio" class="invalid-feedback"></small>
       </div>
       <div class="form-group col-md-6">
-        <label class="form-label">Fecha Termino</label>
-        <input class="form-control" type="date">
+        <label class="text-muted">Fecha de Término</label>
+        <%= text_field_tag 'search[date_to]', @search.date_to, class: "form-control", type: 'date', id: 'FechaTermino' %>
+        <small id="ErrorFechaTermino" class="invalid-feedback"></small>
       </div>
     </div>
-    <div class="row">
-      <div class="form-actions">
-        <button class="btn btn-info">Filtrar</button>
-      </div>
+    <div class="form-actions">
+      <%= submit_tag 'Filtrar', class: 'btn btn-warning', id: "Filtrar"%>
     </div>
-  </div>
+  <%end %>
+  <%= form_tag sales_index_path, method: :get do %>
+    <div class="form-actions">
+      <%= submit_tag 'Resetear', class: 'btn btn-danger', id: "Boton"%>
+    </div>
+  <%end %>
+</div>
 
-
+<br>
 
 <div class="col-12 col-sm-12 col-lg-12">
   <div class="table-responsive">
@@ -50,3 +56,11 @@
 <div class="form-actions">
   <%= link_to 'Nueva venta' , new_sale_path, :class => 'btn btn-primary'%>
 </div>
+
+<style>
+  #Boton{
+    position:relative;
+    left:84px;
+    top: -45px;
+  }
+</style>

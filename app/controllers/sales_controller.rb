@@ -3,11 +3,8 @@ class SalesController < ApplicationController
 
   def index
 
-    if current_user.id_rol == 1
-      @Venta = Sale.select("id, id_usuario, fecha_venta").order('fecha_venta DESC')
-    else
-      @Venta = Sale.select("id, id_usuario, fecha_venta").where("id_usuario = ?", current_user.id).order('fecha_venta DESC')
-    end
+      @search = SaleSearch.new(params[:search])
+      @Venta = @search.scope
   end
 
   def show
@@ -23,15 +20,6 @@ class SalesController < ApplicationController
     end
   end
 
-  def filter
-
-    if current_user.id_rol == 1
-      @Venta = Sale.select("id, id_usuario, fecha_venta").where('fecha_venta < ? AND fecha_venta > ?', @Filtro.fecha_termino, @Filtro.fecha_inicio).order('fecha_venta DESC')
-      render sales_index_path
-    else
-
-    end
-  end
 
   def new
     @venta = Sale.new
