@@ -46,17 +46,30 @@ function ValidacionCampo(Cadena) {//Funcion para validar una cadena de caractere
     }
 }
 
-function validarSiNumero(numero){
+function validarSiNumeroPrecio(numero){
     if(numero.value != "" && numero.length != 0 && numero != null){
-        if (!/^([0-9])*$/.test(numero))
-            return false;
-        else
+        var regex_numeros =  /^\d{2,5}$/;
+        if ((regex_numeros).exec(numero))
             return true;
+        else
+            return false;
     }
     else{
         return false;
     }
+}
 
+function validarSiNumero(numero){
+    if(numero.value != "" && numero.length != 0 && numero != null){
+        var regex_numeros =  /^\d{1,3}$/;
+        if ((regex_numeros).exec(numero))
+            return true;
+        else
+            return false;
+    }
+    else{
+        return false;
+    }
 }
 
 function validaRut(campo){
@@ -329,7 +342,7 @@ $(document).on('turbolinks:load', function() {
 
     $("#Precio").focusout(function(){
         var campo = $("#Precio").val().trim();
-        if(!validarSiNumero(campo)){
+        if(!validarSiNumeroPrecio(campo)){
             $("#Precio").attr("class", "form-control is-invalid");
             $("#ErrorPrecio").html("Campo Erróneo");
             $("#Precio").val("");
@@ -366,6 +379,7 @@ $(document).on('turbolinks:load', function() {
             $('#Filtrar').prop('disabled', true);
         }
     }
+
     $("#FechaInicio").focusout(function () {//Funcion para controlar la fecha de inicio
         var FechaInicio = $("#FechaInicio").val().trim();//Captura del campo
         if (FechaInicio == "") {//Verificar si el campo esta vacio
@@ -441,6 +455,51 @@ $(document).on('turbolinks:load', function() {
         $('#Filtrar').prop('disabled', false);
         ValidFechaInicio = false;
         ValidFechaTermino = false;
+    });
+
+    var ValidStock = false;
+    var ValidPrecio = false;
+
+    function ActivarBtnProducto(){
+        console.log(ValidPrecio +" "+ ValidPrecio);
+        if(ValidStock && ValidPrecio){
+            $('#GuardarBoton').prop('disabled', false);
+        }
+        else{
+            $('#GuardarBoton').prop('disabled', true);
+        }
+    }
+
+    $("#StockEdit").focusout(function () {
+        var campo = $("#StockEdit").val().trim();
+        if(!validarSiNumero(campo)){
+            $("#StockEdit").attr("class", "form-control is-invalid");
+            $("#ErrorEditStock").html("Debe ingresar solo numeros");
+            $("#StockEdit").val("");
+            ValidStock = false;
+        }
+        else{
+            $("#StockEdit").attr("class", "form-control");
+            $("#ErrorEditStock").html("");
+            ValidStock = true;
+        }
+        ActivarBtnProducto();
+    });
+
+    $("#PrecioEdit").focusout(function () {
+        var campo = $("#PrecioEdit").val().trim();
+        if(!validarSiNumeroPrecio(campo)){
+            $("#PrecioEdit").attr("class", "form-control is-invalid");
+            $("#ErrorEditPrecio").html("Debe ingresar solo numeros");
+            $("#PrecioEdit").val("");
+            ValidPrecio = false;
+        }
+        else{
+            $("#PrecioEdit").attr("class", "form-control");
+            $("#ErrorEditPrecio").html("");
+            ValidPrecio = true;
+        }
+        ActivarBtnProducto();
     });
 
 });
