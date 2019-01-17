@@ -65,6 +65,11 @@ class HomeController < ApplicationController
 
   def show
     @Producto = Product.select("products.nombre_producto, products.stock").where("products.stock < 5")
+
+    respond_to do |format|
+      format.html
+      format.pdf {render template: 'home/ficha', pdf: 'Productos_Bajo_Stock '+DateTime.now.strftime('%d-%m-%Y__%H-%M-%S'), page_size: 'A5', orientation: 'Landscape'}
+    end
   end
 
   private

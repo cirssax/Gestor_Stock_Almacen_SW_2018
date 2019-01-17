@@ -2,9 +2,30 @@ class SalesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    if current_user.id_rol == 1
+      @users = []
+      @usuarios = User.all
+      @usuarios.each do |usr|
+        nodo = Usuarios.new(usr.nombre_trabajador, usr.apellidos_trabajador, usr.id, usr.rut)
+        @users.push(nodo)
+      end
+      if params[:commit] == "Resetear"
+        @search = SaleSearch.new(params[:search], -1)
+        @Venta = Sale.all
+      else
+        @search = SaleSearch.new(params[:search], -1)
+        @Venta = @search.scope
+      end
+    else
+      if params[:commit] == "Resetear"
+        @search = SaleSearch.new(params[:search], current_user.id)
+        @Venta = @search.scope
+      else
+        @search = SaleSearch.new(params[:search], current_user.id)
+        @Venta = @search.scope
+      end
+    end
 
-      @search = SaleSearch.new(params[:search])
-      @Venta = @search.scope
   end
 
   def show
@@ -16,7 +37,7 @@ class SalesController < ApplicationController
     @CostoTotal = 0
     respond_to do |format|
       format.html
-      format.pdf {render template: 'sales/boleta', pdf: 'Boleta_de_Venta'}
+      format.pdf {render template: 'sales/boleta', pdf: 'Boleta_de_Venta '+ @FechaVenta.strftime('%d-%m-%Y__%H-%M-%S'), page_size: 'A5', orientation: 'Landscape'}
     end
   end
 
@@ -49,7 +70,7 @@ class SalesController < ApplicationController
         end
       end
       flash[:success] = "Se ha realizado la venta"
-      redirect_to new_sale_path
+      redirect_to descrip_sale_path(@venta_recien_hecha[0].id)
     else
       flash[:danger] = "Ha ocurrido un error"
       render new_sale_path
@@ -68,12 +89,23 @@ class SalesController < ApplicationController
     end
   end
 
+  class Usuarios
+    attr_accessor :nombre_completo
+    attr_accessor :id
+
+    def initialize(nombre, apellido, id, rut)
+      @nombre_completo = nombre.titlecase + " " + apellido.titlecase + " --- " + rut
+      @id = id
+    end
+
+  end
+
   def sale_params
     params.require(:sale).permit(:fecha_venta, :id_usuario, carts_attributes: [:id ,:id_producto, :cantidad])
   end
 
   def filtro_params
-    params.require(:filter).permit(:fecha_inicio, :fecha_termino)
+    params.require(:filter).permit(:fecha_inicio, :fecha_termino, :id_usuario)
   end
 
 end

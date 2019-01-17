@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
   def create
     user = User.find_by(email: params[:user][:email])
     if user
-      if user.id_rol == 2
+      if user.id_estado == 2
         redirect_to new_user_session_url
         flash[:error] = "Usuario inactivo"
       else

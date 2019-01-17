@@ -1,32 +1,46 @@
-<% if @producto.errors.any? %>
-  <div id="error_explanation">
-    <h4>
-      <%= pluralize(@producto.errors.count, "error") %>
-      Prohbido almacenar este producto por:
-    </h4>
-    <div class="alert alert-danger">
-      <a href="#" data-dismiss="alert" class="close">×</a>
-      <ul>
-        <% @producto.errors.full_messages.each do |msg| %>
-          <li>
-            <%= msg %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <% if @producto.errors.any? %>
+      <div id="error_explanation">
+        <h4>
+          <%= pluralize(@producto.errors.count, "error") %>
+          Prohbido almacenar este producto por:
+        </h4>
+        <div class="alert alert-danger">
+          <a href="#" data-dismiss="alert" class="close">×</a>
+          <ul>
+            <% @producto.errors.full_messages.each do |msg| %>
+              <li>
+                <%= msg %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+  <div class="col-md-2"></div>
+</div>
 
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>">
-    <a href="#" data-dismiss="alert" class="close">×</a>
-    <ul>
-      <li>
-        <%= value %>
-      </li>
-    </ul>
+<div class="row">
+  <div class="col-lg-2">
   </div>
-<% end %>
+  <div class="col-md-8">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <a href="#" data-dismiss="alert" class="close">×</a>
+        <ul>
+          <li>
+            <%= value %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
 
 <%=form_for @producto do|f| %>
   <form class="form-horizontal">
@@ -57,7 +71,7 @@
       <div class="row">
         <div class="form-actions">
           <%= f.submit 'Guardar', :class=> 'btn btn-primary' %>
-          <%= link_to 'Cancelar', products_index_path,:class=> 'btn btn-danger' %>
+          <%= link_to 'Cancelar', products_path,:class=> 'btn btn-danger' %>
         </div>
       </div>
     </div>

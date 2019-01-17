@@ -16,8 +16,8 @@
       </h3>
       <p class="list-group-item-text">
         <b>Nombre completo: </b><%=@Lista[0].nombre.capitalize %><br>
-        <b>Cantidad de ventas: </b><%=@Lista[0].ventas %><br>
-        <b>Monto vendido: </b>$<%=@Lista[0].cantidad_vendido %>
+        <b>*Cantidad de ventas: </b><%=@Lista[0].ventas %><br>
+        <b>*Monto vendido: </b>$<%=@Lista[0].cantidad_vendido %>
       </p>
     </div>
     <div class="list-group-item">
@@ -61,6 +61,11 @@
             </li>
           </ul>
           </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>(*):</label> <smal class="text-muted">Para un desgloce mensual descargue la ficha completa</smal>
         </div>
       </div>
     </div>

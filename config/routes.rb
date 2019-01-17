@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   get '/home/show', to: "home#show", as: 'warnings_descrips'
 
   #Ruta de los productos
-  get 'products/index'
-  root :to => "products#index"
+  get 'products/:id/edit_name', to:'products#edit_name', as: 'edit_name'
 
   resources :products
 

@@ -1,5 +1,25 @@
 <h2>Listado de productos</h2>
 
+<h3>Filtrar por Tipo</h3>
+<div class="form-group">
+  <%= form_tag products_path, method: "get" do %>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="text-muted">Tipo de Producto</label>
+        <%=collection_select(:search, :tipo, @listado_tipos, :id, :descrip_tipo, {:include_blank => '-- Todos los tipos --'}, {:class => 'form-control'}) %>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= submit_tag 'Filtrar', class: 'btn btn-warning', id: "Filtrar"%>
+    </div>
+  <%end %>
+  <%= form_tag products_path, method: :get do %>
+    <div class="form-actions">
+      <%= submit_tag 'Resetear', class: 'btn btn-danger', id: "Boton"%>
+    </div>
+  <%end %>
+</div>
+
 <div class="col-12 col-sm-12 col-lg-12">
   <div class="table-responsive">
     <table class="table table-hover table-striped shadow-2dp" role="datatable">
@@ -9,15 +29,19 @@
             <th>Nombre</th>
             <th>Precio</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <% @Productos.each do |producto|  %>
             <tr>
-              <td><%= producto.nombre_producto.capitalize %></td>
+              <td><%= producto.nombre %></td>
               <td><%= producto.precio %></td>
                 <td>
                   <%= link_to 'Nuevo Stock', edit_product_path(producto.id), :class => 'btn btn-success btn-xs' %>
+                  <%= link_to 'Editar', edit_name_path(producto.id), :class => 'btn btn-warning btn-xs' %>
+                </td>
+                <td>
                   <%= link_to 'Ficha', product_path(producto.id), :class => 'btn btn-info btn-xs' %>
                 </td>
             </tr>
@@ -35,7 +59,7 @@
         <tbody>
           <% @Productos.each do |producto|  %>
             <tr>
-              <td><%= producto.nombre_producto %></td>
+              <td><%= producto.nombre %></td>
               <td><%= producto.precio %></td>
               <td><%= producto.stock %></td>
               <td>
@@ -54,4 +78,13 @@
     <%= link_to 'Nuevo Producto', new_product_path, :class => "btn btn-primary" %>
   </div>
 <%end %>
+
+
+<style>
+  #Boton{
+    position:relative;
+    left:84px;
+    top: -45px;
+  }
+</style>
 

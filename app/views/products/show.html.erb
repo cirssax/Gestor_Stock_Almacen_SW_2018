@@ -48,5 +48,8 @@
 <br>
 
 <div>
-  <%=link_to 'Volver', products_index_path, :class => 'btn btn-primary' %>
+  <%if current_user.id_rol == 1 %>
+    <a href="<%=params[:id]%>.pdf" class="btn btn-success" target="_blank">Descargar</a>
+  <%end %>
+  <%=link_to 'Volver', products_path, :class => 'btn btn-primary' %>
 </div>

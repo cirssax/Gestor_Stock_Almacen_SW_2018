@@ -20,16 +20,24 @@
 
 
 
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>">
-    <a href="#" data-dismiss="alert" class="close">×</a>
-    <ul>
-      <li>
-        <%= value %>
-      </li>
-    </ul>
+<div class="row">
+  <div class="col-lg-2">
   </div>
-<% end %>
+  <div class="col-md-8">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <a href="#" data-dismiss="alert" class="close">×</a>
+        <ul>
+          <li>
+            <%= value %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
 
 <%= nested_form_for(@venta) do |f| %>
   <div class="form-group col-md-12">

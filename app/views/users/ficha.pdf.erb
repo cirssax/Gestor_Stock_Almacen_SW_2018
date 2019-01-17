@@ -2,80 +2,255 @@
 <html lang="es">
 
 <head>
-  <title>Boleta</title>
+  <title>Ficha_usuario</title>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-
-<body>
-  <div class="panel panel-info bootcards-file">
-    <div class="panel-heading">
-      <h1 class="panel-title">Usuario: <%=@user.nombre_trabajador.capitalize%></h1>
-    </div>
-    <div class="list-group">
-      <div class="list-group-item" style="height: 130px; padding-left: 0px !important;">
-        <h3 class="list-group-item-text">
-          Ficha
-        </h3>
-        <p class="list-group-item-text">
-          <b>Nombre completo: </b><%=@Lista[0].nombre.capitalize %><br>
-          <b>Cantidad de ventas: </b><%=@Lista[0].ventas %><br>
-          <b>Monto vendido: </b>$<%=@Lista[0].cantidad_vendido %>
-        </p>
-      </div>
-      <div class="list-group-item">
-        <p class="list-group-item-text"><strong>Detalle</strong></p>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-5">
-            <p>
-            <ul>
-              <li>
-                <b>Rol: </b><%=Role.find(@user.id_rol).descrip_rol.capitalize %>
-              </li>
-              <li>
-                <b>Estado: </b><%=State.find(@user.id_estado).descrip_estado.capitalize  %>
-              </li>
-              <li>
-                <b>Email/Login: </b><%=@user.email  %>
-              </li>
-              <li>
-                <b>Rut: </b><%=@user.rut%>
-              </li>
-            </ul>
-            </p>
-          </div>
-
-          <div class="col-md-7">
-            <p>
-            <ul>
-              <li>
-                <b>Fono: </b><%=@user.fono%>
-              </li>
-              <li>
-                <b>Domicilio: </b><%=@user.domicilio.capitalize%>
-              </li>
-              <li>
-                <b>Fecha de Creación: </b><%=@user.created_at.strftime('%d-%m-%Y  %H:%M:%S')%>
-              </li>
-              <li>
-                <b>Fecha de Última modificación: </b><%=@user.updated_at.strftime('%d-%m-%Y  %H:%M:%S')%>
-              </li>
-            </ul>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
   <style>
-    .product-img{
-      width: auto;
-      height: 120px;
+    * {
+      box-sizing: border-box;
     }
 
+    body {
+      padding: 1rem;
+    }
+
+    .contain {
+      max-width: 1170px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 1em;
+    }
+    @media (min-width: 600px) {
+      .contain {
+        padding: 0;
+      }
+    }
+
+    h3,
+    ul {
+      margin: 0;
+    }
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: 3px solid gold;
+    }
+
+    input,
+    textarea,
+    button {
+      width: 100%;
+      border: 1px solid #000;
+    }
+
+    .wrapper {
+      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    }
+    .wrapper > * {
+      padding: 1em;
+    }
+    @media (min-width: 700px) {
+      .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+      }
+      .wrapper > * {
+        padding: 2em 2em;
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .contacts {
+      background: #4b5195;
+      color: #fff;
+    }
+
+    .form {
+      background: #fff;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+    }
+    form label {
+      display: block;
+    }
+    form p {
+      margin: 0;
+    }
+
+    .full-width {
+      grid-column: 1 / 3;
+    }
+
+    button,
+    input,
+    textarea {
+      padding: 1em;
+    }
+
+    button {
+      background: lightgrey;
+      width: 100%;
+      border: 0;
+    }
+    button:hover, button:focus {
+      background: gold;
+      outline: 0;
+    }
+
+
+
+
+    table {
+      width: 100%;
+      text-align: left;
+      border-collapse: collapse;
+      margin: 0 0 1em 0;
+      caption-side: top;
+    }
+    caption, td, th {
+      padding: 0.3em;
+    }
+    tbody {
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+    }
+    tbody th, tfoot th {
+      border: 0;
+    }
+    th.name {
+      width: 25%;
+    }
+    th.location {
+      width: 20%;
+    }
+    th.lasteruption {
+      width: 30%;
+    }
+    th.eruptiontype {
+      width: 25%;
+    }
+    tfoot {
+      text-align: center;
+      color: #555;
+    }
+
+
+
   </style>
+</head>
+<body>
+
+
+<div class="contain">
+
+  <div class="wrapper">
+    <div class="contacts">
+      <h2>Ficha de Trabajador</h2>
+
+      <ul>
+        <li><b>Nombre: </b><%=@user.nombre_trabajador.capitalize%></li>
+        <li><b>Identificación: </b><%=@user.id%></li>
+        <li><b>Correo electrónico: </b><%=@user.email%></li>
+      </ul>
+    </div>
+
+    <div class="form">
+      <h3>Detalle</h3>
+      <form action="">
+        <p>
+          <label for="">Nombre Completo</label>
+          <input type="text" value="<%=@Lista[0].nombre.titleize%>">
+        </p>
+        <p>
+          <label for="">Rut</label>
+          <input type="text" value="<%=@user.rut%>">
+        </p>
+        <p>
+          <label for="">Rol</label>
+          <input type="text" value="<%=Role.find(@user.id_rol).descrip_rol.capitalize%>">
+        </p>
+        <p>
+          <label for="">Estado</label>
+          <input type="text" value="<%=State.find(@user.id_estado).descrip_estado.capitalize%>">
+        </p>
+        <p>
+          <label for="">Fono</label>
+          <input type="text" value="<%=@user.fono%>">
+        </p>
+        <p>
+          <label for="">Domicilio</label>
+          <input type="text" value="<%=@user.domicilio.capitalize%>">
+        </p>
+        <p>
+          <label for="">Fecha de creación</label>
+          <input type="text" value="<%=@user.created_at.strftime('%d-%m-%Y  %H:%M:%S')%>">
+        </p>
+        <p>
+          <label for="">Fecha de última edición</label>
+          <input type="text" value="<%=@user.updated_at.strftime('%d-%m-%Y  %H:%M:%S')%>">
+        </p>
+        <p>
+          <label for="">Cantidad de Ventas</label>
+          <input type="text" value="<%=@Lista[0].ventas %>">
+        </p>
+        <p>
+          <label for="">Total vendido en esas ventas</label>
+          <input type="text" value="$<%=@Lista[0].cantidad_vendido %>">
+        </p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p>
+          <h2><b>Desgloce de total de ventas mensuales</b></h2>
+          <table>
+            <thead>
+            <tr class="odd">
+              <th scope="col"><b>Mes</b></th>
+              <th scope="col"><b>Cantidad</b></th>
+              <th scope="col"><b>Monto</b></th>
+            </tr>
+            </thead>
+            <tbody>
+            <%@Ventas_mensuales.each do |venta| %>
+              <tr class="odd">
+                <td scope="row"><%=venta.mes %></td>
+                <td scope="row"><%=venta.cantidad %></td>
+                <td scope="row">$<%=venta.monto %></td>
+              </tr>
+            <%end %>
+            </tbody>
+          </table>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 </body>
+<footer>
+  <p>
+    <label for="">Fecha de emisión: <%=DateTime.now.strftime('%d-%m-%Y  %H:%M:%S') %></label>
+  </p>
+</footer>

@@ -502,4 +502,21 @@ $(document).on('turbolinks:load', function() {
         ActivarBtnProducto();
     });
 
+    //Validaciones del editar nombre
+
+    $("#EditNombreVal").focusout(function () {
+        var campo = $("#EditNombreVal").val().trim();
+        if(!ValidacionCampo(campo)){
+            $("#EditNombreVal").attr("class", "form-control is-invalid");
+            $("#ErrorEditNombreVal").html("Debe ingresar solo letras");
+            $("#EditNombreVal").val("");
+            $('#GuardarBotonEditNombre').prop('disabled', true);
+        }
+        else{
+            $("#EditNombreVal").attr("class", "form-control");
+            $("#ErrorEditNombreVal").html("");
+            $('#GuardarBotonEditNombre').prop('disabled', false);
+        }
+    });
+
 });
