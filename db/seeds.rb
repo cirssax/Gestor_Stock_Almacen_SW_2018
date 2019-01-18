@@ -130,97 +130,97 @@ Product.create!([
     {
         nombre_producto: "AMPOLLETA",
         precio: 1530,
-        stock: 12,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("ELECTRONICOS")).id
     },
     {
         nombre_producto: "ARROZ",
         precio: 1260,
-        stock: 10,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("ABARROTES")).id
     },
     {
         nombre_producto: "BUFANDA",
         precio: 1500,
-        stock: 8,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("ROPA")).id
     },
     {
         nombre_producto: "CARPETA",
         precio: 600,
-        stock: 10,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("OFICINA")).id
     },
     {
         nombre_producto: "CONFORT",
         precio: 872,
-        stock: 11,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("HIGIENE")).id
     },
     {
         nombre_producto: "CORCHETERA",
         precio: 1600,
-        stock: 6,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("OFICINA")).id
     },
     {
         nombre_producto: "CUCHARA",
         precio: 500,
-        stock: 25,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("COCINA")).id
     },
     {
         nombre_producto: "ESTUCHE",
         precio: 1500,
-        stock: 6,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("ESCOLAR")).id
     },
     {
         nombre_producto: "FIDEOS",
         precio: 1000,
-        stock: 11,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("ABARROTES")).id
     },
     {
         nombre_producto: "GOMA DE BORRAR",
         precio: 100,
-        stock: 8,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("ESCOLAR")).id
     },
     {
         nombre_producto: "JABON",
         precio: 200,
-        stock: 5,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("HIGIENE")).id
     },
     {
         nombre_producto: "LAPIZ",
         precio: 150,
-        stock: 10,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("ESCOLAR")).id
     },
     {
         nombre_producto: "LAPIZ PASTA",
         precio: 200,
-        stock: 10,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("OFICINA")).id
     },
     {
         nombre_producto: "PELOTAS DE PING PONG",
         precio: 1000,
-        stock: 0,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("DEPORTE")).id
     },
     {
         nombre_producto: "SILLA",
         precio: 2500,
-        stock: 3,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("OFICINA")).id
     },
     {
         nombre_producto: "TOALLA",
         precio: 1400,
-        stock: 3,
+        stock: 50,
         id_tipo: (Type.find_by_descrip_tipo("HIGIENE")).id
     }
                 ])
