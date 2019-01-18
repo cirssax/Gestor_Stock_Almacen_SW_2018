@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ddcdedc4-5270-44dd-a0ce-dd2524a6726d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ProyectoSW2018.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoSW2018.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
     </list>
     <ignored path="ProyectoSW2018.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-732">
-              <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+              <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -52,8 +55,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="88" column="20" lean-forward="true" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
+            <state relative-caret-position="-971">
+              <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -356,12 +359,12 @@
       <workItem from="1547682857742" duration="1480000" />
       <workItem from="1547691861233" duration="6026000" />
       <workItem from="1547754348253" duration="5261000" />
-      <workItem from="1547777040877" duration="2493000" />
+      <workItem from="1547777040877" duration="2753000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284113000" />
+    <option name="totallyTimeSpent" value="284373000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -376,7 +379,7 @@
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22905028" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22905028" />
       <window_info id="Structure" order="1" weight="0.24980047" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -387,7 +390,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49880287" weight="0.32866043" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32866043" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4964086" visible="true" weight="0.21339564" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4964086" visible="true" weight="0.21339564" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50359136" side_tool="true" weight="0.20404984" />
       <window_info anchor="bottom" id="Messages" order="10" visible="true" weight="0.32882884" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
@@ -705,14 +708,14 @@
     <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-732">
-          <caret line="45" column="29" lean-forward="true" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+          <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="88" column="20" lean-forward="true" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
+        <state relative-caret-position="-971">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
         </state>
       </provider>
     </entry>
