@@ -193,6 +193,7 @@
             <tr class="odd">
               <th scope="col"><b>Producto</b></th>
               <th scope="col"><b>Cantidad</b></th>
+              <th scope="col"><b>Precio de Venta</b></th>
               <th scope="col"><b>Sub Total</b></th>
             </tr>
             </thead>
@@ -201,8 +202,9 @@
               <tr class="odd">
                 <td scope="row"><%=@Productos.find(venta.id_producto).nombre_producto.capitalize %></td>
                 <td><%=venta.cantidad  %></td>
-                <td>$<%=@Productos.find(venta.id_producto).precio * venta.cantidad %></td>
-                <% @CostoTotal = @CostoTotal + @Productos.find(venta.id_producto).precio * venta.cantidad %>
+                <td>$<%=venta.precio_actual %></td>
+                <td>$<%=(venta.cantidad).to_i * (venta.precio_actual).to_i %></td>
+                <% @CostoTotal = @CostoTotal + ((venta.cantidad).to_i * (venta.precio_actual).to_i) %>
               </tr>
             <%end %>
             </tbody>

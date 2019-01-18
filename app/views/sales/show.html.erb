@@ -54,9 +54,10 @@
             <b>Cantidad: <%=venta.cantidad  %></b>
           </li>
           <li>
-            <b>Sub Total: $<%=@Productos.find(venta.id_producto).precio * venta.cantidad %></b>
+            <b>Sub Total: $<%=(venta.cantidad).to_i * (venta.precio_actual).to_i %></b><br>
+            <label class="text-muted"><small>Precio de venta: $<%=venta.precio_actual %></small></label>
           </li>
-          <% @CostoTotal = @CostoTotal + @Productos.find(venta.id_producto).precio * venta.cantidad %>
+          <% @CostoTotal = @CostoTotal + ((venta.cantidad).to_i * (venta.precio_actual).to_i) %>
         </ul>
         </p>
       <%end %>
