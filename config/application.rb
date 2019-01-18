@@ -13,7 +13,7 @@ module ProyectoSW2018
 
 
     #Zona horaria
-    config.active_record.default_timezone = :local
+
     config.time_zone = 'Santiago'
 
     # Settings in config/environments/* take precedence over those specified here.
