@@ -65,7 +65,7 @@ User.create([
         rut: "9807445-7"
     }
             ])
-p "Created #{User.cout} entries"
+p "Created #{User.count} entries"
 #Tipos de productos
 Type.destroy_all
 Type.create([
@@ -116,4 +116,4 @@ State.create([
         descrip_estado: "DESACTIVADO"
     }
              ])
-p "Created #{State.cout} entries"
+p "Created #{State.count} entries"
