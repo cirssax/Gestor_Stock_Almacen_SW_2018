@@ -6,6 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#Roles de usuarios
+Role.destroy_all
+Role.create([
+                {
+                    descrip_rol: "ADMINISTRADOR"
+                },
+                {
+                    descrip_rol: "VENDEDOR"
+                }
+            ])
+p "Created #{Role.count} entries"
+#Estados de usuarios
+State.destroy_all
+State.create([
+                 {
+                     descrip_estado: "ACTIVO"
+                 },
+                 {
+                     descrip_estado: "DESACTIVADO"
+                 }
+             ])
+p "Created #{State.count} entries"
+
 #Usuarios
 User.destroy_all
 User.create([
@@ -95,25 +118,3 @@ Type.create([
     }
             ])
 p "Created #{Type.count} entries"
-#Roles de usuarios
-Role.destroy_all
-Role.create([
-    {
-        descrip_rol: "ADMINISTRADOR"
-    },
-    {
-        descrip_rol: "VENDEDOR"
-    }
-            ])
-p "Created #{Role.count} entries"
-#Estados de usuarios
-State.destroy_all
-State.create([
-    {
-        descrip_estado: "ACTIVO"
-    },
-    {
-        descrip_estado: "DESACTIVADO"
-    }
-             ])
-p "Created #{State.count} entries"
