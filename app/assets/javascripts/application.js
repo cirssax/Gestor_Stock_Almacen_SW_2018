@@ -355,7 +355,7 @@ $(document).on('turbolinks:load', function() {
 
     $("#Stock").focusout(function(){
         var campo = $("#Stock").val().trim();
-        if(!validarSiNumero(campo)){
+        if(!validarSiNumeroPrecio(campo)){
             $("#Stock").attr("class", "form-control is-invalid");
             $("#ErrorStock").html("Campo Erróneo");
             $("#Stock").val("");
@@ -472,7 +472,7 @@ $(document).on('turbolinks:load', function() {
 
     $("#StockEdit").focusout(function () {
         var campo = $("#StockEdit").val().trim();
-        if(!validarSiNumero(campo)){
+        if(!validarSiNumeroPrecio(campo)){
             $("#StockEdit").attr("class", "form-control is-invalid");
             $("#ErrorEditStock").html("Debe ingresar solo numeros");
             $("#StockEdit").val("");
