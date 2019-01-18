@@ -6,10 +6,10 @@ ruby '2.5.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
 # Use postgresql as the database for Active Record
-group :production do
+#group :production do
   gem 'pg', '>= 0.18', '< 2.0'
-  gem 'rails_12factor', group: :production
-end
+ # gem 'rails_12factor', group: :production
+#end
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

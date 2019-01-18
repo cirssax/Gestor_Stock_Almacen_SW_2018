@@ -8,7 +8,7 @@
 
 #Roles de usuarios
 Role.destroy_all
-Role.create([
+Role.create!([
                 {
                     descrip_rol: "ADMINISTRADOR"
                 },
@@ -19,7 +19,7 @@ Role.create([
 p "Created #{Role.count} entries"
 #Estados de usuarios
 State.destroy_all
-State.create([
+State.create!([
                  {
                      descrip_estado: "ACTIVO"
                  },
@@ -31,12 +31,13 @@ p "Created #{State.count} entries"
 
 #Usuarios
 User.destroy_all
-User.create([
+User.create!([
     {
         email: "cristobal.saldiasr@utem.cl",
-        encrypted_password: "$2a$11$W1IaAZSnZmwXgKWI4a61HuMSZ4u5tOl9bZjY883dykC7m4Ov6chPy",
-        id_rol: 2,
-        id_estado: 1,
+        password: '1234qwer',
+        password_confirmation: '1234qwer',
+        id_rol: (Role.find_by_descrip_rol("VENDEDOR")).id,
+        id_estado: (State.find_by_descrip_estado("ACTIVO")).id,,
         nombre_trabajador: "IGNACIO ANTONIO",
         apellidos_trabajador: "ROJAS MOLINA",
         fono: 90100787,
@@ -45,9 +46,10 @@ User.create([
     },
     {
         email: "cristobal.saldias@gmail.com",
-        encrypted_password: "$2a$11$tNf/F1bVvc92EmkLh9QYbe//lFTjZiGjF4UWvvkZEVYlNjhSwyb1S",
-        id_rol: 1,
-        id_estado: 1,
+        password: '1234qwer',
+        password_confirmation: '1234qwer',
+        id_rol: (Role.find_by_descrip_rol("ADMINISTRADOR")).id,
+        id_estado: (State.find_by_descrip_estado("ACTIVO")).id,
         nombre_trabajador: "CRISTOBAL",
         apellidos_trabajador: "SALDIAS ROJAS",
         fono: 77348189,
@@ -56,9 +58,10 @@ User.create([
     },
     {
         email: "rasa777@vtr.net",
-        encrypted_password: "$2a$11$EudvU6LA1V1g9GQa21F9wOyHZewWwB4XMRV7vvQRurAj0bITm8rpe",
-        id_rol: 2,
-        id_estado: 1,
+        password: '1234qwer',
+        password_confirmation: '1234qwer',
+        id_rol: (Role.find_by_descrip_rol("VENDEDOR")).id,
+        id_estado: (State.find_by_descrip_estado("ACTIVO")).id,,
         nombre_trabajador: "JOAQUIN",
         apellidos_trabajador: "AGUILERA ZAPATA",
         fono: 89738289,
@@ -67,9 +70,10 @@ User.create([
     },
     {
         email: "ljuo@rol.cl",
-        encrypted_password: "$2a$11$Q2DVW.J42kzL89AIdDf0Jupgb6wgFIcKsgCRGjWXjy21Il0VMWnkC",
-        id_rol: 2,
-        id_estado: 1,
+        password: '1234qwer',
+        password_confirmation: '1234qwer',
+        id_rol: (Role.find_by_descrip_rol("VENDEDOR")).id,,
+        id_estado: (State.find_by_descrip_estado("ACTIVO")).id,,
         nombre_trabajador: "ANDREA",
         apellidos_trabajador: "MOLINA BURGOS",
         fono: 123431123,
@@ -78,9 +82,10 @@ User.create([
     },
     {
         email: "cristobalisr@gmail.com",
-        encrypted_password: "$2a$11$Sjnr71a/5e2hbBr0pkQc4.GtrtNDQMVe.GT/9OyWfmo21HBZPVdza",
-        id_rol: 2,
-        id_estado: 1,
+        password: '1234qwer',
+        password_confirmation: '1234qwer',
+        id_rol: (Role.find_by_descrip_rol("VENDEDOR")).id,,
+        id_estado: (State.find_by_descrip_estado("ACTIVO")).id,,
         nombre_trabajador: "CAMILA ANDREA",
         apellidos_trabajador: "ESCARATE BURGOS",
         fono: 94386762,

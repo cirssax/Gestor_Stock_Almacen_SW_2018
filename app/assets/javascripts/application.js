@@ -61,7 +61,7 @@ function validarSiNumeroPrecio(numero){
 
 function validarSiNumero(numero){
     if(numero.value != "" && numero.length != 0 && numero != null){
-        var regex_numeros =  /^\d{1,3}$/;
+        var regex_numeros =  /^\d{8,10}$/;
         if ((regex_numeros).exec(numero))
             return true;
         else
