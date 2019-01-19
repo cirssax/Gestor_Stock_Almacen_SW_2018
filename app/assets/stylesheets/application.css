@@ -16,4 +16,5 @@
  *= require datatables
  *= require_tree .
  *= require_self
+ *=
  */
