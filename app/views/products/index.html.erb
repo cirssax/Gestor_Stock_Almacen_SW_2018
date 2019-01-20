@@ -28,6 +28,7 @@
           <tr class="info">
             <th>Nombre</th>
             <th>Precio</th>
+            <th>Stock</th>
             <th></th>
             <th></th>
           </tr>
@@ -35,8 +36,9 @@
         <tbody>
           <% @Productos.each do |producto|  %>
             <tr>
-              <td><%= producto.nombre %></td>
-              <td><%= producto.precio %></td>
+              <td><%=producto.nombre %></td>
+              <td>$<%=producto.precio %></td>
+              <td><%=producto.stock %></td>
                 <td>
                   <%= link_to 'Nuevo Stock', edit_product_path(producto.id), :class => 'btn btn-success btn-xs' %>
                   <%= link_to 'Editar', edit_name_path(producto.id), :class => 'btn btn-warning btn-xs' %>
