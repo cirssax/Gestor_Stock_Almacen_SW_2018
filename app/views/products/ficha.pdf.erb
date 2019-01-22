@@ -145,6 +145,6 @@
   </div>
 </div>
 <p>
-  <label for="">Fecha de emisión: <%=DateTime.now.strftime('%d-%m-%Y  %H:%M:%S') %></label>
+  <label for="">Fecha de emisión: <%=DateTime.now.advance(:hours => -3).strftime('%d-%m-%Y  %H:%M:%S') %></label>
 </p>
 </body>
