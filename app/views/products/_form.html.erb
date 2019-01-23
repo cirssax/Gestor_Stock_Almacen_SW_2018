@@ -65,12 +65,13 @@
         </div>
         <div class="form-group col-md-6">
           <%= f.label :'Tipo' %><br>
-          <%= f.collection_select(:id_tipo, Type.all, :id, :descrip_tipo, {:include_blank => true}, {:class => 'form-control'}) %>
+          <%= f.collection_select(:id_tipo, Type.all, :id, :descrip_tipo, {:include_blank => true}, {:class => 'form-control', :id => "TipoProducto"}) %>
+          <small id="ErrorTipo" class="invalid-feedback"></small>
         </div>
       </div>
       <div class="row">
         <div class="form-actions">
-          <%= f.submit 'Guardar', :class=> 'btn btn-primary' %>
+          <%= f.submit 'Guardar', :class=> 'btn btn-primary', :id => "CrearProducto" %>
           <%= link_to 'Cancelar', products_path,:class=> 'btn btn-danger' %>
         </div>
       </div>

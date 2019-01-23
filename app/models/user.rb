@@ -11,11 +11,10 @@ class User < ApplicationRecord
   has_many :sales
   accepts_nested_attributes_for :sales
 
-  before_save :normalizacion
-
 
   VALID_NAME_REGEX = /(?=^.{2,50}$)[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)?/
   VALID_CORREO_REGEX = /\A\S+@.+\.\S+\z/
+  attr_accessor :rut
   #Validaciones para el rut
   validates :rut, rut:{message: "invalido"}, uniqueness: {message:"ya existente"}, presence: {message: "Ingrese rut"}
   #Valicaciones para el domicilio
@@ -33,6 +32,7 @@ class User < ApplicationRecord
   #Validacion del correo
   validates :email, format:  {with: VALID_CORREO_REGEX, :message => "Formato invalido de correo"}, uniqueness: {message: "Ya existe un usuario asignado a ese correo"}
 
+  before_save :normalizacion
 
   private
   def normalizacion

@@ -127,9 +127,10 @@ class ProductsController < ApplicationController
           flash[:warning] = "Ingrese un nombre"
           redirect_to edit_name_path
         else
+          nombre_nuevo = nombre_nuevo.upcase
           p = Product.where("nombre_producto = ?", nombre_nuevo)#verificacion de la existencia de un producto con ese nombre
-          if p.length == 1 && nuevo_tipo.to_i == p[0][:id_tipo].to_i
-            flash[:warning] = "No ha modificado nada del producto"
+          if p.length == 1
+            flash[:warning] = "Ya hay un producto con ese nombre"
             redirect_to edit_name_path
           else
             nombre_antiguo = producto.nombre_producto

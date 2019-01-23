@@ -217,17 +217,108 @@ $(document).on('turbolinks:load', function() {
 
 
     //Funciones para validaciones de usuario
+    var ValidNombre = false;
+    var ValidApellido = false;
+    var ValidacionRut = false;
+    var ValidFono = false;
+    var ValidDomicilio = false;
+    var ValidCorreo = false;
+    var ValPass1 = true;
+    var ValPass2 = true;
+
+    function ActivarBtnUsuario(){
+        if(ValidNombre && ValidApellido && ValidacionRut && ValidFono && ValidDomicilio && ValidCorreo && ValPass1 && ValPass2){
+            $('#BtnUsuario').prop('disabled', false);
+        }
+        else{
+            $('#BtnUsuario').prop('disabled', true);
+        }
+    }
+
+    function ValidarSistemaUsr(){
+        var nombre =  $("#Nombre").val().trim();
+        var apellidos = $("#Apellidos").val().trim();
+        var rut = $("#Rut").val().trim();
+        var fono = $("#Fono").val().trim();
+        var domicilio = $("#Domicilio").val().trim();
+        var correo = $("#Correo").val().trim();
+        //validacion del nombre
+        if(!ValidacionCampo(nombre)){
+            ValidNombre = false;
+        }
+        else{
+            ValidNombre = true;
+        }
+        //validacion del apellido
+        if(!ValidacionCampo(apellidos)){
+            ValidApellido = false;
+        }
+        else{
+            ValidApellido = true;
+        }
+        //validacion del rut
+        rut = rut.replace(".","");
+        if(rut.length == 0){
+            ValidacionRut = false;
+        }
+        else{
+            if(rut.indexOf('-')==-1){
+                ValidacionRut = false;
+            }
+            else{
+                if(!validaRut(rut)){
+                    ValidacionRut = false;
+                }
+                else{
+                    ValidacionRut = true;
+                }
+            }
+
+        }
+        //validacion del fono
+        if(!validarSiNumero(fono)){
+            ValidFono = false;
+        }
+        else{
+            ValidFono = true;
+        }
+        //validacion del domicilio
+        if(domicilio.length == 0){
+            ValidDomicilio = false;
+        }
+        else{
+            if(domicilio.indexOf('0') == -1 && domicilio.indexOf('1') == -1 && domicilio.indexOf('2') == -1 && domicilio.indexOf('3') == -1 && domicilio.indexOf('4') == -1 && domicilio.indexOf('5') == -1 && domicilio.indexOf('6') == -1 && domicilio.indexOf('7') == -1 && domicilio.indexOf('8') == -1 &&  domicilio.indexOf('9') == -1){
+                ValidDomicilio = false;
+            }
+            else{
+                ValidDomicilio = true;
+            }
+        }
+        //validacion del correo
+        if (!isValidEmailAddress(correo)) {//Validacion del correo
+            ValidCorreo = false;
+        }
+        else {
+            ValidCorreo = true;
+        }
+    }
+
+
     $("#Nombre").focusout(function(){
        var campo = $("#Nombre").val().trim();
        if(!ValidacionCampo(campo)){
            $("#Nombre").attr("class", "form-control is-invalid");
            $("#ErrorNombre").html("Campo Erróneo");
            $("#Nombre").val("");
+           ValidNombre = false;
        }
        else{
            $("#Nombre").attr("class", "form-control");
            $("#ErrorNombre").html("");
+           ValidNombre = true;
        }
+        ValidarSistemaUsr();
+       ActivarBtnUsuario();
     });
 
     $("#Apellidos").focusout(function(){
@@ -236,11 +327,15 @@ $(document).on('turbolinks:load', function() {
             $("#Apellidos").attr("class", "form-control is-invalid");
             $("#ErrorApellido").html("Campo Erróneo");
             $("#Apellidos").val("");
+            ValidApellido = false;
         }
         else{
             $("#Apellidos").attr("class", "form-control");
             $("#ErrorApellido").html("");
+            ValidApellido = true;
         }
+        ValidarSistemaUsr();
+        ActivarBtnUsuario();
     });
 
     $("#Rut").focusout(function(){
@@ -250,26 +345,32 @@ $(document).on('turbolinks:load', function() {
             $("#Rut").attr("class", "form-control is-invalid");
             $("#ErrorRut").html("Ingrese el Rut");
             $("#Rut").val("");
+            ValidacionRut = false;
         }
         else{
             if(campo.indexOf('-')==-1){
                 $("#Rut").attr("class", "form-control is-invalid");
                 $("#ErrorRut").html("Ingrese guión");
                 $("#Rut").val("");
+                ValidacionRut = false;
             }
             else{
                 if(!validaRut(campo)){
                     $("#Rut").attr("class", "form-control is-invalid");
                     $("#ErrorRut").html("Formato invalido de Rut");
                     $("#Rut").val("");
+                    ValidacionRut = false;
                 }
                 else{
                     $("#Rut").attr("class", "form-control");
                     $("#ErrorRut").html("");
+                    ValidacionRut = true;
                 }
             }
 
         }
+        ValidarSistemaUsr();
+        ActivarBtnUsuario();
     });
 
     $("#Fono").focusout(function(){
@@ -278,11 +379,15 @@ $(document).on('turbolinks:load', function() {
             $("#Fono").attr("class", "form-control is-invalid");
             $("#ErrorFono").html("Campo Erróneo");
             $("#Fono").val("");
+            ValidFono = false;
         }
         else{
             $("#Fono").attr("class", "form-control");
             $("#ErrorFono").html("");
+            ValidFono = true;
         }
+        ValidarSistemaUsr();
+        ActivarBtnUsuario();
     });
 
     $("#Domicilio").focusout(function(){
@@ -291,11 +396,23 @@ $(document).on('turbolinks:load', function() {
             $("#Domicilio").attr("class", "form-control is-invalid");
             $("#ErrorDomicilio").html("Ingrese Domicilio");
             $("#Domicilio").val("");
+            ValidDomicilio = false;
         }
         else{
-            $("#Domicilio").attr("class", "form-control");
-            $("#ErrorDomicilio").html("");
+            if(campo.indexOf('0') == -1 && campo.indexOf('1') == -1 && campo.indexOf('2') == -1 && campo.indexOf('3') == -1 && campo.indexOf('4') == -1 && campo.indexOf('5') == -1 && campo.indexOf('6') == -1 && campo.indexOf('7') == -1 && campo.indexOf('8') == -1 && campo.indexOf('9') == -1){
+                $("#Domicilio").attr("class", "form-control is-invalid");
+                $("#ErrorDomicilio").html("Su domicilio debe tener un numero");
+                $("#Domicilio").val("");
+                ValidDomicilio = false;
+            }
+            else{
+                $("#Domicilio").attr("class", "form-control");
+                $("#ErrorDomicilio").html("");
+                ValidDomicilio = true;
+            }
         }
+        ValidarSistemaUsr();
+        ActivarBtnUsuario();
     });
 
     $("#Correo").focusout(function(){
@@ -304,25 +421,32 @@ $(document).on('turbolinks:load', function() {
             $("#Correo").attr("class", "form-control is-invalid");
             $("#Correo").val("");
             $("#ErrorCorreo").html("Error de formato en correo");
+            ValidCorreo = false;
         }
         else {
             $("#Correo").attr("class", "form-control");
             $("#ErrorCorreo").html("");
+            ValidCorreo = true;
         }
+        ValidarSistemaUsr();
+        ActivarBtnUsuario();
     });
 
-    //Validacion para la Creacion/Edicion de los Tipos
 
+
+    //Validacion para la Creacion/Edicion de los Tipos
     $("#Tipo").focusout(function(){
         var campo = $("#Tipo").val().trim();
         if(!ValidacionCampo(campo)){
             $("#Tipo").attr("class", "form-control is-invalid");
             $("#ErrorTipo").html("Campo Erróneo");
             $("#Tipo").val("");
+            $('#GuardarTipo').prop('disabled', true);
         }
         else{
             $("#Tipo").attr("class", "form-control");
             $("#ErrorTipo").html("");
+            $('#GuardarTipo').prop('disabled', false);
         }
     });
 
@@ -365,6 +489,122 @@ $(document).on('turbolinks:load', function() {
             $("#ErrorStock").html("");
         }
     });
+
+    $("#Pass1").focusout(function(){
+        var campo1 = $("#Pass1").val();
+        var campo2 = $("#Pass2").val();
+        if(campo1.length == 0 && campo2.length == 0){
+            $("#Pass1").attr("class", "form-control");
+            $("#ErrorPass1").html("");
+            $("#Pass2").attr("class", "form-control");
+            $("#ErrorPass2").html("");
+            ValPass1 = true;
+            ValPass2 = true;
+        }
+        else{
+            if(campo1.length != 0 && campo2.length !=0){
+                if(campo1 == campo2){
+                    $("#Pass1").attr("class", "form-control");
+                    $("#ErrorPass1").html("");
+                    ValPass1 = true;
+
+                    $("#Pass2").attr("class", "form-control");
+                    $("#ErrorPass2").html("");
+                    ValPass2 = true;
+                }
+                else{
+                    $("#Pass1").attr("class", "form-control is-invalid");
+                    $("#ErrorPass1").html("Contraseñas no coinciden");
+                    $("#Pass1").val("");
+                    ValPass1 = false;
+
+                    $("#Pass2").attr("class", "form-control is-invalid");
+                    $("#ErrorPass2").html("Contraseñas no coinciden");
+                    $("#Pass2").val("");
+                    ValPass2 = false;
+                }
+            }
+            else{
+                if (campo1.length != 0 && campo2.length == 0){
+                    $("#Pass2").attr("class", "form-control is-invalid");
+                    $("#ErrorPass2").html("Debe confirmar contraseña");
+                    $("#Pass2").val("");
+                    ValPass2 = false;
+                }
+                else{
+                    $("#Pass1").attr("class", "form-control is-invalid");
+                    $("#ErrorPass1").html("Debe llenar ambos campos");
+                    $("#Pass1").val("");
+                    ValPass1 = false;
+
+                    $("#Pass2").attr("class", "form-control is-invalid");
+                    $("#ErrorPass2").html("Debe llenar ambos campos");
+                    $("#Pass2").val("");
+                    ValPass2 = false;
+                }
+            }
+        }
+        ActivarBtnUsuario();
+    });
+
+    $("#Pass2").focusout(function(){
+        var campo1 = $("#Pass1").val();
+        var campo2 = $("#Pass2").val();
+        if(campo1.length == 0 && campo2.length == 0){
+            $("#Pass1").attr("class", "form-control");
+            $("#ErrorPass1").html("");
+            $("#Pass2").attr("class", "form-control");
+            $("#ErrorPass2").html("");
+            ValPass1 = true;
+            ValPass2 = true;
+        }
+        else{
+            if(campo1.length != 0 && campo2.length !=0){
+                if(campo1 == campo2){
+                    $("#Pass1").attr("class", "form-control");
+                    $("#ErrorPass1").html("");
+                    ValPass1 = true;
+
+                    $("#Pass2").attr("class", "form-control");
+                    $("#ErrorPass2").html("");
+                    ValPass2 = true;
+                }
+                else{
+                    $("#Pass1").attr("class", "form-control is-invalid");
+                    $("#ErrorPass1").html("Contraseñas no coinciden");
+                    $("#Pass1").val("");
+                    ValPass1 = false;
+
+                    $("#Pass2").attr("class", "form-control is-invalid");
+                    $("#ErrorPass2").html("Contraseñas no coinciden");
+                    $("#Pass2").val("");
+                    ValPass2 = false;
+                }
+            }
+            else{
+                if (campo1.length == 0 && campo2.length != 0){
+                    $("#Pass1").attr("class", "form-control is-invalid");
+                    $("#ErrorPass1").html("Debe confirmar contraseña");
+                    $("#Pass1").val("");
+                    ValPass1 = false;
+                }
+                else{
+                    $("#Pass1").attr("class", "form-control is-invalid");
+                    $("#ErrorPass1").html("Debe llenar ambos campos");
+                    $("#Pass1").val("");
+                    ValPass1 = false;
+
+                    $("#Pass2").attr("class", "form-control is-invalid");
+                    $("#ErrorPass2").html("Debe llenar ambos campos");
+                    $("#Pass2").val("");
+                    ValPass2 = false;
+                }
+            }
+        }
+        ActivarBtnUsuario();
+    });
+
+
 
     //Funcion para el filtro de fecha
     var ValidFechaInicio = false;
@@ -457,11 +697,12 @@ $(document).on('turbolinks:load', function() {
         ValidFechaTermino = false;
     });
 
+    //EDITAR UN PRODUCTO
+
     var ValidStock = false;
     var ValidPrecio = false;
 
     function ActivarBtnProducto(){
-        console.log(ValidPrecio +" "+ ValidPrecio);
         if(ValidStock && ValidPrecio){
             $('#GuardarBoton').prop('disabled', false);
         }
@@ -518,5 +759,85 @@ $(document).on('turbolinks:load', function() {
             $('#GuardarBotonEditNombre').prop('disabled', false);
         }
     });
+
+
+    //CREAR UN PRODUCTO
+    var ValidNombreProdCrear = false;
+    var ValidPrecioProdCrear = false;
+    var ValidStockProdCrear = false;
+    var ValidSelectTipo = false;
+
+    function ActivarBtnCrearProd(){
+        if(ValidNombreProdCrear && ValidPrecioProdCrear && ValidStockProdCrear && ValidSelectTipo){
+            $('#CrearProducto').prop('disabled', false);
+        }
+        else{
+            $('#CrearProducto').prop('disabled', true);
+        }
+    }
+
+    $("#NombreProd").focusout(function () {
+        var campo = $("#NombreProd").val().trim();
+        if(!ValidacionCampo(campo)){
+            $("#NombreProd").attr("class", "form-control is-invalid");
+            $("#ErrorNombreProd").html("Debe ingresar solo letras");
+            $("#NombreProd").val("");
+            ValidNombreProdCrear = false;
+        }
+        else{
+            $("#NombreProd").attr("class", "form-control");
+            $("#ErrorNombreProd").html("");
+            ValidNombreProdCrear = true;
+        }
+        ActivarBtnCrearProd();
+    });
+
+    $("#Precio").focusout(function () {
+        var campo = $("#Precio").val().trim();
+        if(!validarSiNumeroPrecio(campo)){
+            $("#Precio").attr("class", "form-control is-invalid");
+            $("#ErrorPrecio").html("Debe ingresar solo letras");
+            $("#Precio").val("");
+            ValidPrecioProdCrear = false;
+        }
+        else{
+            $("#Precio").attr("class", "form-control");
+            $("#ErrorPrecio").html("");
+            ValidPrecioProdCrear = true;
+        }
+        ActivarBtnCrearProd();
+    });
+
+    $("#Stock").focusout(function () {
+        var campo = $("#Stock").val().trim();
+        if(!validarSiNumeroPrecio(campo)){
+            $("#Stock").attr("class", "form-control is-invalid");
+            $("#ErrorStock").html("Debe ingresar solo letras");
+            $("#Stock").val("");
+            ValidStockProdCrear = false;
+        }
+        else{
+            $("#Stock").attr("class", "form-control");
+            $("#ErrorStock").html("");
+            ValidStockProdCrear = true;
+        }
+        ActivarBtnCrearProd();
+    });
+
+    $("#TipoProducto").change(function(){
+        var campo = $("select[id=TipoProducto]").val();
+        if(campo==""){
+            $("#TipoProducto").attr("class", "form-control is-invalid");
+            $("#ErrorTipo").html("Debe seleccionar un tipo de producto");
+            ValidSelectTipo = false;
+        }
+        else{
+            $("#TipoProducto").attr("class", "form-control");
+            $("#ErrorTipo").html("");
+            ValidSelectTipo = true;
+        }
+        ActivarBtnCrearProd();
+    });
+
 
 });

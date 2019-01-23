@@ -1,32 +1,41 @@
-<% if @types.errors.any? %>
-  <div id="error_explanation">
-    <h4>
-      Prohbido almacenar este tipo de producto por:
-    </h4>
-    <div class="alert alert-danger">
-      <a href="#" data-dismiss="alert" class="close">×</a>
-      <ul>
-        <% @types.errors.full_messages.each do |msg| %>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <% if @types.errors.any? %>
+      <div id="error_explanation">
+        <h4>
+          Prohbido almacenar este tipo de producto por:
+        </h4>
+        <div class="alert alert-danger">
+          <a href="#" data-dismiss="alert" class="close">×</a>
+            <% @types.errors.full_messages.each do |msg| %>
+              <%= msg %><br>
+            <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <a href="#" data-dismiss="alert" class="close">×</a>
+        <ul>
           <li>
-            <%= msg %>
+            <%= value %>
           </li>
-        <% end %>
-      </ul>
-    </div>
+        </ul>
+      </div>
+    <% end %>
   </div>
-<% end %>
-
-
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>">
-    <a href="#" data-dismiss="alert" class="close">×</a>
-    <ul>
-      <li>
-        <%= value %>
-      </li>
-    </ul>
-  </div>
-<% end %>
+  <div class="col-md-2"></div>
+</div>
 
 <%=form_for @types do|f| %>
   <form class="form-horizontal">
@@ -38,7 +47,7 @@
       </div>
     </div>
     <div class="form-actions">
-      <%= f.submit 'Guardar', :class=> 'btn btn-primary' %>
+      <%= f.submit 'Guardar', :class=> 'btn btn-primary', :id => "GuardarTipo" %>
       <%= link_to 'Volver', types_path, :class=> 'btn btn-danger' %>
     </div>
   </form>

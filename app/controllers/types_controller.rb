@@ -46,13 +46,20 @@ class TypesController < ApplicationController
     if current_user.id_rol != 1
       flash[:warning] = "No posee los roles para esta acción"
     else
-      @tipo = Type.find(params[:id])
+      @types= Type.find(params[:id])
 
-      if @tipo.update(tipo_params)
-        flash[:success] = "Tipo de producto actualizado"
+      #Verificacion de la no existencia del mismo tipo
+      @tipos = Type.where("descrip_tipo = ?", @types.descrip_tipo.upcase)
+      if @tipos.length > 0
+        flash[:warning] = "Ya existe un tipo de producto con ese nombre"
         redirect_to new_type_path
       else
-        render :new
+        if @types.update(tipo_params)
+          flash[:success] = "Tipo de producto actualizado"
+          redirect_to new_type_path
+        else
+          render :new
+        end
       end
     end
   end
