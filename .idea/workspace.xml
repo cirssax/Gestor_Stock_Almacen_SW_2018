@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ddcdedc4-5270-44dd-a0ce-dd2524a6726d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/products_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/products_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/types_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/types_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/type.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/type.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/user.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/products/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/products/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/types/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/types/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/users/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/users/_form.html.erb" afterDir="false" />
-    </list>
+    <list default="true" id="ddcdedc4-5270-44dd-a0ce-dd2524a6726d" name="Default" comment="" />
     <ignored path="ProyectoSW2018.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -64,7 +53,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/user.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
+            <state relative-caret-position="379">
               <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
             </state>
           </provider>
@@ -467,12 +456,12 @@
       <workItem from="1548122142964" duration="871000" />
       <workItem from="1548125316323" duration="80000" />
       <workItem from="1548171957203" duration="4181000" />
-      <workItem from="1548203974711" duration="4522000" />
+      <workItem from="1548203974711" duration="4786000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="326298000" />
+    <option name="totallyTimeSpent" value="326562000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -485,9 +474,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17318435" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17318435" />
       <window_info id="Structure" order="1" weight="0.24980047" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -498,7 +486,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49880287" weight="0.32866043" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32866043" />
-      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4964086" visible="true" weight="0.21339564" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4964086" visible="true" weight="0.21339564" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50359136" side_tool="true" weight="0.20404984" />
       <window_info anchor="bottom" id="Messages" order="10" visible="true" weight="0.32882884" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
@@ -789,7 +777,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
+        <state relative-caret-position="379">
           <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
         </state>
       </provider>
