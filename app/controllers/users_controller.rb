@@ -81,7 +81,7 @@ class UsersController < ApplicationController
       end
     end
     nombre = @user.nombre_trabajador+ " " + @user.apellidos_trabajador
-    elemento = Campo.new(nombre, @user.id_rol, @user.id_estado, @user.email, @user.rut, @user.fono, @user.domicilio, @user.created_at, @user.updated_at, @ventas.length, cantidad_vendido)
+    elemento = Campo.new(nombre, @user.id_rol, @user.id_estado, @user.email, @user[:rut], @user.fono, @user.domicilio, @user.created_at, @user.updated_at, @ventas.length, cantidad_vendido)
     @Lista.push(elemento)
 
     #Obtencion de las ventas mensuales
@@ -137,7 +137,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.pdf {render template: 'users/ficha', pdf: 'Ficha_Usuario '+@user.rut, page_size: 'Letter'}
+      format.pdf {render template: 'users/ficha', pdf: 'Ficha_Usuario '+@user[:rut], page_size: 'Letter'}
     end
 
   end

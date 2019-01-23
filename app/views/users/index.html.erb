@@ -18,7 +18,7 @@
             <tr>
               <td><%= user.nombre_trabajador.titleize %></td>
               <td><%= user.apellidos_trabajador.titleize %></td>
-              <td><%= user.rut %></td>
+              <td><%= user[:rut] %></td>
               <td><%= @rol.find(user.id_rol).descrip_rol.capitalize %></td>
               <td>
                 <%= link_to 'Editar', edit_user_path(user.id), :class => 'btn btn-success btn-xs'%>

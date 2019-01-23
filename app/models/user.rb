@@ -14,7 +14,7 @@ class User < ApplicationRecord
 
   VALID_NAME_REGEX = /(?=^.{2,50}$)[a-zA-ZñÑáéíóúÁÉÍÓÚ]+(\s[a-zA-ZñÑáéíóúÁÉÍÓÚ]+)?/
   VALID_CORREO_REGEX = /\A\S+@.+\.\S+\z/
-  attr_accessor :rut
+  #attr_accessor :rut
   #Validaciones para el rut
   validates :rut, rut:{message: "invalido"}, uniqueness: {message:"ya existente"}, presence: {message: "Ingrese rut"}
   #Valicaciones para el domicilio
