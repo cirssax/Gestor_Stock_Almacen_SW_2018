@@ -48,7 +48,7 @@ gem 'rails-assets-datatables', source: 'https://rails-assets.org'
 
 #gem 'bootstrap-sass', '~> 3.3.6'
 
-gem "paperclip", "~> 5.0.0"
+gem "paperclip", "~> 5.2.0"
 
 gem 'simple_form'
 
